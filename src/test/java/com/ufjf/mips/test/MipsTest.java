@@ -18,5 +18,11 @@ import com.ufjf.mips.model.MipsOperational;
  */
 public class MipsTest {
 	
-    
+    @Test
+    public void GivenBinaryWhenConversionThenInt() {
+    	MipsOperational ops = new MipsOperational();
+    	String number = "1111000";
+    	Integer intNum = ops.strToInt(number);
+    	assertEquals(120, intNum);
+    }
 }

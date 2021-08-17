@@ -21,6 +21,8 @@ public class MipsForm extends javax.swing.JFrame {
         configurarUI();
         
     }
+    
+    
 
 	private void configurarUI() {
 		this.setLocationRelativeTo(null);
