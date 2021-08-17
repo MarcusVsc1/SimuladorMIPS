@@ -18,8 +18,7 @@ public class MipsOperational {
         Integer decimal = 0;
         for(int i = binary.length - 1; i >= 0 ; i--){
             decimal += binary[i] == 0 ? 0 : (int) Math.pow(2, binary.length -1 - i);
-        }
-        
+        }      
         return decimal;
     }
     
@@ -33,8 +32,26 @@ public class MipsOperational {
     			somaDois = negBinary[i] == 0;
     		}
     	}
-    	
-    	return negBinary;
-    	
+    	return negBinary;   	
+    }
+    
+    public Integer[] andInstruction(Integer[] bin1, Integer[] bin2 ) {
+    	Integer[] andBin = new Integer[bin1.length];
+    	for(int i = bin1.length - 1; i >= 0; i--) {
+    		andBin[i] = (bin1[i] == 1 && bin2[i] == 1) ? 1 : 0;
+    	}
+    	return andBin;
+    }
+    
+    public Integer[] orInstruction(Integer[] bin1, Integer[] bin2 ) {
+    	Integer[] orBin = new Integer[bin1.length];
+    	for(int i = bin1.length - 1; i >= 0; i--) {
+    		orBin[i] = (bin1[i] == 1 || bin2[i] == 1) ? 1 : 0;
+    	}
+    	return orBin;
+    }
+    
+    public Integer setOnLessThenInstruction(Integer[] num1, Integer[] num2) {
+    	return (convertBinaryToDecimal(num1) < convertBinaryToDecimal(num2)) ? 1 : 0;
     }
 }
