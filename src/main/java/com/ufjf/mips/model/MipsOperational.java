@@ -23,7 +23,7 @@ public class MipsOperational {
         return decimal;
     }
     
-    public Integer[] negativeBinary(Integer[] binary) {
+    public Integer[] createNegativeBinary(Integer[] binary) {
     	boolean somaDois = true;
     	Integer[] negBinary = binary.clone();
     	for(int i = negBinary.length - 1; i >= 0; i--) {

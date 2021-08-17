@@ -31,7 +31,7 @@ public class MipsTest {
     public void GivenArrayWhenBinaryThenNegativeSucess() {
     	MipsOperational ops = new MipsOperational();
         Integer[] array = {0,0,0,0,0,1,1,0};
-        Integer[] negativeArray = ops.negativeBinary(array);
+        Integer[] negativeArray = ops.createNegativeBinary(array);
         Integer[] expected = {1,1,1,1,1,0,1,0};
         assertArrayEquals(expected, negativeArray);
     }
