@@ -16,13 +16,13 @@ import kotlin.io.TextStreamsKt;
  */
 public class InputValidator {
     
-    public static List<Integer[]> validarInput(String input) throws IOException{
+    public static String[] validarInput(String input) throws IOException{
         String [] inputPorLinha = input.split("\n");
         String caracteres="01";
-        List<Integer[]> toInt = new ArrayList<Integer[]>();
+//        List<Integer[]> toInt = new ArrayList<Integer[]>();
         for (String linha : inputPorLinha){
-            int contador = 0;
-            Integer[] linhaInt = new Integer[32];
+//            int contador = 0;
+//            Integer[] linhaInt = new Integer[32];
             if(linha.length() != 32){
                 throw new IOException("Falha ao carregar os inputs!" +
                 " (MIPS aceita cada linha com exatamente 32 caracteres compostos de 0 e 1).");
@@ -34,12 +34,13 @@ public class InputValidator {
                     throw new IOException("Falha ao carregar os inputs!" +
                 " (MIPS aceita cada linha com exatamente 32 caracteres compostos de 0 e 1).");
 		}
-                linhaInt[contador] = Integer.parseInt(String.valueOf(c));
-                contador++;
+//                linhaInt[contador] = Integer.parseInt(String.valueOf(c));
+//                contador++;
             }
-            toInt.add(linhaInt);
+//            toInt.add(linhaInt);
         }
         
-        return toInt;
+//        return toInt;
+        return inputPorLinha;
     }
 }

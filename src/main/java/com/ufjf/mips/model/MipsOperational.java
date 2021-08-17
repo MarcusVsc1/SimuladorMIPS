@@ -6,12 +6,19 @@
 package com.ufjf.mips.model;
 
 import java.util.Arrays;
+import java.util.Map;
 
 /**
  *
  * @author Nova
  */
 public class MipsOperational {
+	
+	
+	public MipsOperational() {
+		// TODO Auto-generated constructor stub
+	}
+	
     
     
     public Integer convertBinaryToDecimal(Integer[] binary){
@@ -22,36 +29,36 @@ public class MipsOperational {
         return decimal;
     }
     
-    public Integer[] createNegativeBinary(Integer[] binary) {
-    	boolean somaDois = true;
-    	Integer[] negBinary = binary.clone();
-    	for(int i = negBinary.length - 1; i >= 0; i--) {
-    		negBinary[i] = (negBinary[i] == 0 ? 1 : 0);
-    		if(somaDois) {
-    			negBinary[i] = negBinary[i] + 1 == 2 ? 0 : 1;
-    			somaDois = negBinary[i] == 0;
-    		}
-    	}
-    	return negBinary;   	
-    }
-    
-    public Integer[] andInstruction(Integer[] bin1, Integer[] bin2 ) {
-    	Integer[] andBin = new Integer[bin1.length];
-    	for(int i = bin1.length - 1; i >= 0; i--) {
-    		andBin[i] = (bin1[i] == 1 && bin2[i] == 1) ? 1 : 0;
-    	}
-    	return andBin;
-    }
-    
-    public Integer[] orInstruction(Integer[] bin1, Integer[] bin2 ) {
-    	Integer[] orBin = new Integer[bin1.length];
-    	for(int i = bin1.length - 1; i >= 0; i--) {
-    		orBin[i] = (bin1[i] == 1 || bin2[i] == 1) ? 1 : 0;
-    	}
-    	return orBin;
-    }
-    
-    public Integer setOnLessThenInstruction(Integer[] num1, Integer[] num2) {
-    	return (convertBinaryToDecimal(num1) < convertBinaryToDecimal(num2)) ? 1 : 0;
-    }
+//    public Integer[] createNegativeBinary(Integer[] binary) {
+//    	boolean somaDois = true;
+//    	Integer[] negBinary = binary.clone();
+//    	for(int i = negBinary.length - 1; i >= 0; i--) {
+//    		negBinary[i] = (negBinary[i] == 0 ? 1 : 0);
+//    		if(somaDois) {
+//    			negBinary[i] = negBinary[i] + 1 == 2 ? 0 : 1;
+//    			somaDois = negBinary[i] == 0;
+//    		}
+//    	}
+//    	return negBinary;   	
+//    }
+//    
+//    public Integer[] andInstruction(Integer[] bin1, Integer[] bin2 ) {
+//    	Integer[] andBin = new Integer[bin1.length];
+//    	for(int i = bin1.length - 1; i >= 0; i--) {
+//    		andBin[i] = (bin1[i] == 1 && bin2[i] == 1) ? 1 : 0;
+//    	}
+//    	return andBin;
+//    }
+//    
+//    public Integer[] orInstruction(Integer[] bin1, Integer[] bin2 ) {
+//    	Integer[] orBin = new Integer[bin1.length];
+//    	for(int i = bin1.length - 1; i >= 0; i--) {
+//    		orBin[i] = (bin1[i] == 1 || bin2[i] == 1) ? 1 : 0;
+//    	}
+//    	return orBin;
+//    }
+//    
+//    public Integer setOnLessThenInstruction(Integer[] num1, Integer[] num2) {
+//    	return (convertBinaryToDecimal(num1) < convertBinaryToDecimal(num2)) ? 1 : 0;
+//    }
 }

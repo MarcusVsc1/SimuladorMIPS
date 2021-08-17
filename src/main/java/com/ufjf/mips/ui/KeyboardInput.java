@@ -108,7 +108,7 @@ public class KeyboardInput extends javax.swing.JFrame {
         String input = campo.getText();
 
         try {
-            List<Integer[]> comandos = InputValidator.validarInput(input);   
+            String[] comandos = InputValidator.validarInput(input);   
             new MipsForm(comandos);
             this.setVisible(false);
         } catch (IOException e) {

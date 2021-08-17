@@ -16,12 +16,16 @@ public class MipsForm extends javax.swing.JFrame {
     /**
      * Creates new form MipsForm
      */
-    public MipsForm(List<Integer[]> comandos) {
+    public MipsForm(String[] comandos) {
         initComponents();
-        this.setLocationRelativeTo(null);
+        configurarUI();
         
-        this.setVisible(true);
     }
+
+	private void configurarUI() {
+		this.setLocationRelativeTo(null);
+        this.setVisible(true);
+	}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -70,10 +74,7 @@ public class MipsForm extends javax.swing.JFrame {
 
         instrucoes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Endereço", "Instrução"
@@ -193,7 +194,7 @@ public class MipsForm extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton3))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGap(18, 24, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(

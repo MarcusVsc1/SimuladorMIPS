@@ -26,7 +26,7 @@ public class FileManager {
         }     
     }
 
-    public static List<Integer[]> criarListaComandos(String localArquivo) throws FileNotFoundException, IOException {
+    public static String[] criarListaComandos(String localArquivo) throws FileNotFoundException, IOException {
         BufferedReader reader = criarBufferedReader(localArquivo);
         String comandosEmLinha = "";
         String line = reader.readLine();
