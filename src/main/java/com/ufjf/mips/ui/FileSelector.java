@@ -234,8 +234,10 @@ public class FileSelector extends javax.swing.JFrame {
              new MipsForm(FileManager.criarListaComandos(localArquivo));
              this.setVisible(false);
         } catch (Exception e) {
+        		e.printStackTrace();
                 JOptionPane.showMessageDialog(rootPane, e.getMessage(),
                     "Erro!",0);
+                
         }
     }//GEN-LAST:event_loadArquivoButtonActionPerformed
 
