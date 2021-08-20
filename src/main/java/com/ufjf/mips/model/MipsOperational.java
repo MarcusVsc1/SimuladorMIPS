@@ -41,14 +41,14 @@ public class MipsOperational {
 		log = "Log de execução: \n";
 	}
 	
-	private void inicializarRegistradoresEMemoria() {
-		for(int i = 1; i < bancoRegistradores.length - 1; i++) {
-			bancoRegistradores[i] = -999999;
+	public void inicializarRegistradoresEMemoria() {
+		for(int i = 1; i < MipsOperational.bancoRegistradores.length - 1; i++) {
+			MipsOperational.bancoRegistradores[i] = -999999;
 		}
-		bancoRegistradores[0] = 0;
-		bancoRegistradores[32] = 0;
+		MipsOperational.bancoRegistradores[0] = 0;
+		MipsOperational.bancoRegistradores[32] = 0;
 		for(int i = 0; i < memoria.length; i++) {
-			memoria[i] = -999999;
+			MipsOperational.memoria[i] = -999999;
 		}
 	}
 	

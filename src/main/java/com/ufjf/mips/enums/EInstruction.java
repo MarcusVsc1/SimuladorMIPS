@@ -118,18 +118,22 @@ public enum EInstruction {
 		@Override
 		public String createAssembly(Instruction ins) {
 			ins = (TypeI) ins;
-			System.out.println(((TypeI) ins).getRs());
 			return String.format("sw %s, %s(%s)", 
-					MipsOperational.mapa.get(((TypeI) ins).getRs()), 
+					MipsOperational.mapa.get(((TypeI) ins).getRt()), 
 					((TypeI) ins).getImm(),
-					MipsOperational.mapa.get(((TypeI) ins).getRt())
+					MipsOperational.mapa.get(((TypeI) ins).getRs())
 					);
 		}
 
 		@Override
 		public void execucaoDireta(Instruction ins) {
-			// TODO Auto-generated method stub
-			
+			ins = (TypeI) ins;
+			String run = "Iniciando instrução : "+ins.createAssembly()+"\n";
+			MipsOperational.memoria[(MipsOperational.bancoRegistradores[((TypeI) ins).getRs()] + ((TypeI) ins).getImm()) / 4] 
+					 = MipsOperational.bancoRegistradores[((TypeI) ins).getRt()];
+			run = run + "Instrução rodada com sucesso! \n";
+			MipsOperational.log += run;
+			MipsOperational.bancoRegistradores[32] += 4;
 		}
 	}, 
 	LW(35) {
@@ -138,16 +142,21 @@ public enum EInstruction {
 			ins = (TypeI) ins;
 			System.out.println(((TypeI) ins).getRs());
 			return String.format("lw %s, %s(%s)", 
-					MipsOperational.mapa.get(((TypeI) ins).getRs()), 
+					MipsOperational.mapa.get(((TypeI) ins).getRt()), 
 					((TypeI) ins).getImm(),
-					MipsOperational.mapa.get(((TypeI) ins).getRt())
+					MipsOperational.mapa.get(((TypeI) ins).getRs())
 					);
 		}
 
 		@Override
 		public void execucaoDireta(Instruction ins) {
-			// TODO Auto-generated method stub
-			
+			ins = (TypeI) ins;
+			String run = "Iniciando instrução : "+ins.createAssembly()+"\n";
+			MipsOperational.bancoRegistradores[((TypeI) ins).getRt()]
+					 = MipsOperational.memoria[(MipsOperational.bancoRegistradores[((TypeI) ins).getRs()] + ((TypeI) ins).getImm()) / 4];
+			run = run + "Instrução rodada com sucesso! \n";
+			MipsOperational.log += run;
+			MipsOperational.bancoRegistradores[32] += 4;
 		}
 	}, 
 	ADDI(8) {

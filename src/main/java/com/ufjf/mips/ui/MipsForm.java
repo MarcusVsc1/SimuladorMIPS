@@ -22,6 +22,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
 
 import com.ufjf.mips.model.MipsOperational;
+import com.ufjf.mips.utils.FileManager;
 
 /**
  *
@@ -42,8 +43,7 @@ public class MipsForm extends javax.swing.JFrame {
         ops = new MipsOperational(comandos);
     	initComponents();
         configurarUI();
-    }
-    
+    } 
 
 	private void adicionarInstrucoesAoTable(MipsOperational mipsOp) {
 		List<String> lista = mipsOp.getAssemblyList();
@@ -68,11 +68,11 @@ public class MipsForm extends javax.swing.JFrame {
 		memoria.setFocusable(false);
 		memoria.getTableHeader().setReorderingAllowed(false);
 		DefaultTableModel model = (DefaultTableModel) memoria.getModel();
-		for(Integer i = 0; i < 128; i = i+4) {
-			model.addRow(new String[] {i.toString(), "###"});
+		for(Integer i = 0; i < 128; i++) {
+			Integer num = (i*4);
+			model.addRow(new String[] {num.toString(), "###"});
 		}	
 	}
-
 
 	private void iniciarLog() {
 		log = new JTextArea();
@@ -104,15 +104,30 @@ public class MipsForm extends javax.swing.JFrame {
                     "Erro!",0);
 			this.setVisible(false);
 		} 
-		
+	}
+	
+    private void resetarPrograma() {
+		ops.inicializarRegistradoresEMemoria();
+		MipsOperational.log = "Log de execução: \n";
+		atualizarUI();
+		jButton1.setEnabled(true);
+		jButton2.setEnabled(true);	
+		ops.setClock(0);
 	}
 
 	private void finalizarPrograma() {
 		JOptionPane.showMessageDialog(rootPane, "A compilação do conjunto de instruções foi finalizado. "
-				+ "Aperte reset caso queira rodar novamente",
+				+ "Aperte reset caso queira rodar novamente. Arquivos criados na pasta output.",
 		        "Fim do programa",0);
 		jButton1.setEnabled(false);
 		jButton2.setEnabled(false);
+		String memo = FileManager.criarStringArrayMemoria(ops.memoria);
+		try {
+			FileManager.escreverEmArquivo(memo, "memoria.txt");
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(rootPane, "Falha ao criar algum dos arquivos.",
+			        "Erro!",0);
+		}
 	}
 
     private long getTime(Date start) {
@@ -135,6 +150,7 @@ public class MipsForm extends javax.swing.JFrame {
         jFrame2 = new javax.swing.JFrame();
         jScrollPane2 = new javax.swing.JScrollPane();
         registradores = new javax.swing.JTable();
+        registradores.setEnabled(false);
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -361,24 +377,26 @@ public class MipsForm extends javax.swing.JFrame {
 
     private void atualizarUI() {
 		for(int i = 1; i < MipsOperational.bancoRegistradores.length; i++) {
-			if(MipsOperational.bancoRegistradores[i] != -999999) {
+			if(MipsOperational.bancoRegistradores[i] != -999999) 
 				registradores.setValueAt(MipsOperational.bancoRegistradores[i], i, 1);
-			}
+			else
+				registradores.setValueAt("###", i, 1);
 		}
 		for(int i = 0; i < MipsOperational.memoria.length; i++) {
-			if(MipsOperational.memoria[i] != -999999) {
+			if(MipsOperational.memoria[i] != -999999) 
 				memoria.setValueAt(MipsOperational.memoria[i], i, 1);
-			}
+			else
+				memoria.setValueAt("###", i, 1);
 		}
 		log.setText(MipsOperational.log);		
 	}
 
 
 	private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+       resetarPrograma();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    /**
+	/**
  * @param args the command line arguments
      */
     public static void main(String args[]) {
