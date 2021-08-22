@@ -71,10 +71,10 @@ public abstract class Instruction implements Cloneable{
 				pipeline = new String[] {"FETCH", "READ", "ALU", "REGISTER"};
 				break;
 		case 2:  command = "J";
-				pipeline = new String[] {"FETCH", "READ", "ALU"};
+				pipeline = new String[] {"FETCH"};
 				break;
 		case 3:  command = "JAL";
-				pipeline = new String[] {"FETCH", "READ", "ALU"};
+				pipeline = new String[] {"FETCH"};
 				break;
 		case 4:  command = "BEQ";
 				pipeline = new String[] {"FETCH", "READ", "ALU"};

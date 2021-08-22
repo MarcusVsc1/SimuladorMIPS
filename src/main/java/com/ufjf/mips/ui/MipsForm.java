@@ -123,7 +123,7 @@ public class MipsForm extends javax.swing.JFrame {
 	}
 	
 	private void executarTodoPipeline() {
-		ops.piped =  false;
+		ops.piped = true;
 		Date start = new Date();
 		try {
 			while(ops.bancoRegistradores[32]/4 < ops.getAssemblyList().size()) {
@@ -131,7 +131,6 @@ public class MipsForm extends javax.swing.JFrame {
 				if(getTime(start) > 4 && (ops.bancoRegistradores[32]/4 < ops.getAssemblyList().size())) 
 					throw new TimeLimitExceededException("Execução direta entrou em loop infinito e será terminada.");
 			}
-			finalizarPrograma();
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(rootPane, e.getMessage(),
                     "Erro!",0);
@@ -146,6 +145,7 @@ public class MipsForm extends javax.swing.JFrame {
 		jButton1.setEnabled(true);
 		jButton2.setEnabled(true);
 		ops.setClock(0);
+		ops.pipeline.clear();
 		btnPipelineDireto.setEnabled(true);
 		btnPipelineSequencial.setEnabled(true);
 		ops.piped =  false;

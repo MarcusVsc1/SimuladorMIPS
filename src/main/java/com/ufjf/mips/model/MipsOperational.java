@@ -70,7 +70,9 @@ public class MipsOperational {
 	
 	public void pipelineSequencial() throws CloneNotSupportedException {
 		if(pipeline.isEmpty()) {
-			pipeline.add(instructions.get(bancoRegistradores[32]/4));
+			Instruction copia = (Instruction) instructions.get(bancoRegistradores[32]/4).clone();
+			copia.setStage(0);
+			pipeline.add(copia);
 		}
 		Iterator <Instruction> it = pipeline.iterator();
 		boolean newAdd = true;
@@ -81,24 +83,23 @@ public class MipsOperational {
 				log += "============================================= \n"
 						+ "Fim do estágio \n"
 						+ "============================================ \n";
-
 				return;
 			}
 			ins.setStage(ins.getStage()+1);
 			if(ins.getStage() >= ins.pipeline.length) it.remove();
-			System.out.println(pipeline.isEmpty());
 		}
-		
-		if(!pipeline.isEmpty())	{
-			if(Arrays.stream(controlHazard).anyMatch(x -> x.equals(pipeline.get(pipeline.size()-1).getCommand()) )) {
+//		if(!pipeline.isEmpty()) System.out.println(pipeline.get(pipeline.size()-1).getStage() + " "+pipeline.get(pipeline.size()-1).getCommand()
+//				+ " "+pipeline.get(pipeline.size()-1).pipeline.length);
+		if((!pipeline.isEmpty()) &&	
+			(Arrays.stream(controlHazard).anyMatch(x -> x.equals(pipeline.get(pipeline.size()-1).getCommand())))
+			&& (pipeline.get(pipeline.size()-1).getStage() < pipeline.get(pipeline.size()-1).pipeline.length)
+				) {
 				log+="Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline\n";
 				log += "============================================= \n"
 						+ "Fim do estágio \n"
 						+ "============================================= \n";
-			}	
 		}
 		else {
-			System.out.println("Entrou");
 			log += "============================================= \n"
 					+ "Fim do estágio \n"
 					+ "============================================= \n";
