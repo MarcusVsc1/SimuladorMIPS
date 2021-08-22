@@ -603,7 +603,7 @@ public enum EInstruction {
 				run = "Iniciando instrução : "+ins.createAssembly()+"\n";
 				run = run + "Instrução rodada com sucesso! \n";
 			}else {
-				run += String.format("Instrução %s, Valor de PC: %s\n. Instrução finalizada no pipeline.\n", 
+				run += String.format("Instrução %s, Valor de PC: %s.\n Instrução finalizada no pipeline.\n", 
 						ins.createAssembly(),  MipsOperational.bancoRegistradores[32]);
 				MipsOperational.bancoRegistradores[32] -= 4;
 			}
@@ -645,7 +645,9 @@ public enum EInstruction {
 		public boolean read(Instruction ins) {
 			boolean hazard = ins.verifyDataHazard();
 			if(!hazard) return false;
-			MipsOperational.log +=String.format("Valor de RS para a instrução %s: \n", ((TypeR)ins).getRs());
+			MipsOperational.log +=String.format("Valor de RS para a instrução %s: %s\n", 
+					ins.createAssembly(), 
+					((TypeR)ins).getRs());
 			return true;
 		}
 		

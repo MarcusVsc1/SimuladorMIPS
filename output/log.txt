@@ -118,8 +118,8 @@ Fetch da instrução : addi $s1, $s1, 1
 Fim do estágio 
 ============================================= 
 Valores de RS e Immediate para a instrução addi $s1, $s1, 1: 17 1 
-Instrução j 28, Valor de PC: 28
-. Instrução finalizada no pipeline.
+Instrução j 28, Valor de PC: 28.
+ Instrução finalizada no pipeline.
 ============================================= 
 Fim do estágio 
 ============================================= 
@@ -188,8 +188,8 @@ Fetch da instrução : addi $s1, $s1, 1
 Fim do estágio 
 ============================================= 
 Valores de RS e Immediate para a instrução addi $s1, $s1, 1: 17 1 
-Instrução j 28, Valor de PC: 28
-. Instrução finalizada no pipeline.
+Instrução j 28, Valor de PC: 28.
+ Instrução finalizada no pipeline.
 ============================================= 
 Fim do estágio 
 ============================================= 
@@ -258,8 +258,8 @@ Fetch da instrução : addi $s1, $s1, 1
 Fim do estágio 
 ============================================= 
 Valores de RS e Immediate para a instrução addi $s1, $s1, 1: 17 1 
-Instrução j 28, Valor de PC: 28
-. Instrução finalizada no pipeline.
+Instrução j 28, Valor de PC: 28.
+ Instrução finalizada no pipeline.
 ============================================= 
 Fim do estágio 
 ============================================= 
@@ -328,8 +328,8 @@ Fetch da instrução : addi $s1, $s1, 1
 Fim do estágio 
 ============================================= 
 Valores de RS e Immediate para a instrução addi $s1, $s1, 1: 17 1 
-Instrução j 28, Valor de PC: 28
-. Instrução finalizada no pipeline.
+Instrução j 28, Valor de PC: 28.
+ Instrução finalizada no pipeline.
 ============================================= 
 Fim do estágio 
 ============================================= 
@@ -398,8 +398,8 @@ Fetch da instrução : addi $s1, $s1, 1
 Fim do estágio 
 ============================================= 
 Valores de RS e Immediate para a instrução addi $s1, $s1, 1: 17 1 
-Instrução j 28, Valor de PC: 28
-. Instrução finalizada no pipeline.
+Instrução j 28, Valor de PC: 28.
+ Instrução finalizada no pipeline.
 ============================================= 
 Fim do estágio 
 ============================================= 
@@ -468,8 +468,8 @@ Fetch da instrução : addi $s1, $s1, 1
 Fim do estágio 
 ============================================= 
 Valores de RS e Immediate para a instrução addi $s1, $s1, 1: 17 1 
-Instrução j 28, Valor de PC: 28
-. Instrução finalizada no pipeline.
+Instrução j 28, Valor de PC: 28.
+ Instrução finalizada no pipeline.
 ============================================= 
 Fim do estágio 
 ============================================= 
@@ -538,8 +538,8 @@ Fetch da instrução : addi $s1, $s1, 1
 Fim do estágio 
 ============================================= 
 Valores de RS e Immediate para a instrução addi $s1, $s1, 1: 17 1 
-Instrução j 28, Valor de PC: 28
-. Instrução finalizada no pipeline.
+Instrução j 28, Valor de PC: 28.
+ Instrução finalizada no pipeline.
 ============================================= 
 Fim do estágio 
 ============================================= 
@@ -779,7 +779,7 @@ Próxima instrução é um desvio, portanto não serão adicionadas novas instru
 Fim do estágio 
 ============================================= 
 Valor calculado pela ALU para a instrução sw $t6, 56($s4): 96 
-Valor de RS para a instrução 31: 
+Valor de RS para a instrução jr $ra: 31
 Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
 ============================================= 
 Fim do estágio 
@@ -792,8 +792,9 @@ Instrução jr $ra, Valor de PC: 88
 ============================================= 
 Fim do estágio 
 ============================================= 
-Instrução j 132, Valor de PC: 132
-. Instrução finalizada no pipeline.
+Instrução j 132, Valor de PC: 132.
+ Instrução finalizada no pipeline.
 ============================================= 
 Fim do estágio 
 ============================================= 
+Programa finalizado.
