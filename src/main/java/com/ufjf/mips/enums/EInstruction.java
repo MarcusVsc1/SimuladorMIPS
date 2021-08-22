@@ -300,6 +300,7 @@ public enum EInstruction {
 			}
 			MipsOperational.memoria[posicao / 4] 
 					 = MipsOperational.bancoRegistradores[((TypeI) ins).getRt()];
+			System.out.println("Alterado" + posicao+ " "+MipsOperational.bancoRegistradores[((TypeI) ins).getRt()]+" "+((TypeI) ins).getRt());
 			MipsOperational.log += run;
 		}
 		
@@ -675,6 +676,7 @@ public enum EInstruction {
 				run = "Iniciando instrução : "+ins.createAssembly()+"\n";
 				run = run + "Instrução rodada com sucesso! \n";
 			}else {
+				MipsOperational.bancoRegistradores[32] -= 4;
 				run += String.format("Instrução %s, Valor de PC: %s\n Valor de $ra: %s. Instrução finalizada no pipeline.\n", 
 						ins.createAssembly(), MipsOperational.bancoRegistradores[32], MipsOperational.bancoRegistradores[31]);
 			}

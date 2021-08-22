@@ -20,7 +20,7 @@ Conteúdo da memória de dados da última execução:
 [72] [#LIXO]
 [76] [#LIXO]
 [80] [90]
-[84] [#LIXO]
+[84] [8]
 [88] [40]
 [92] [26]
 [96] [94]

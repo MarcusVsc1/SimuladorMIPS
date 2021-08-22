@@ -678,18 +678,30 @@ Fetch da instrução : sw $t3, 40($s4)
 Fim do estágio 
 ============================================= 
 Valores de RS e Immediate para a instrução sw $t3, 40($s4): 20 40 
-Instrução jal 92, Valor de PC: 92
+Instrução jal 92, Valor de PC: 88
  Valor de $ra: 88. Instrução finalizada no pipeline.
 ============================================= 
 Fim do estágio 
 ============================================= 
 Valor calculado pela ALU para a instrução sw $t3, 40($s4): 80 
-Fetch da instrução : sw $t6, 44($s4)
+Fetch da instrução : and $t6, $t1, $s2
 ============================================= 
 Fim do estágio 
 ============================================= 
 Instrução sw $t3, 40($s4): Esta se trata de uma operação de escrita.
 Memória na posição 80 modificada. 
+Instrução finalizada. 
+Valores de RS e RT  para a instrução 9: 
+Fetch da instrução : sw $t6, 44($s4)
+============================================= 
+Fim do estágio 
+============================================= 
+Valor calculado pela ALU para a instrução and $t6, $t1, $s2: 8 
+Detectado hazard de dados, portanto não será atualizado o restante do pipeline
+============================================= 
+Fim do estágio 
+============================================ 
+Instrução and $t6, $t1, $s2: registrador $t6 modificado. 
 Instrução finalizada. 
 Valores de RS e Immediate para a instrução sw $t6, 44($s4): 20 44 
 Fetch da instrução : or $t6, $t1, $s2
