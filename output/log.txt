@@ -1,0 +1,715 @@
+Log de execução: 
+Fetch da instrução : addi $s0, $zero, 0
+Valores de RS e Immediate para a instrução addi $s0, $zero, 0: 0 0 
+Valor calculado pela ALU para a instrução addi $s0, $zero, 0: 0 
+Instrução addi $s0, $zero, 0: registrador $s0 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : addi $s1, $zero, 1
+Valores de RS e Immediate para a instrução addi $s1, $zero, 1: 0 1 
+Valor calculado pela ALU para a instrução addi $s1, $zero, 1: 1 
+Instrução addi $s1, $zero, 1: registrador $s1 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : addi $s2, $zero, 8
+Valores de RS e Immediate para a instrução addi $s2, $zero, 8: 0 8 
+Valor calculado pela ALU para a instrução addi $s2, $zero, 8: 8 
+Instrução addi $s2, $zero, 8: registrador $s2 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : addi $s3, $zero, 30
+Valores de RS e Immediate para a instrução addi $s3, $zero, 30: 0 30 
+Valor calculado pela ALU para a instrução addi $s3, $zero, 30: 30 
+Instrução addi $s3, $zero, 30: registrador $s3 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : addi $t5, $s2, 32
+Valores de RS e Immediate para a instrução addi $t5, $s2, 32: 18 32 
+Valor calculado pela ALU para a instrução addi $t5, $s2, 32: 40 
+Instrução addi $t5, $s2, 32: registrador $t5 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : addi $s4, $zero, 40
+Valores de RS e Immediate para a instrução addi $s4, $zero, 40: 0 40 
+Valor calculado pela ALU para a instrução addi $s4, $zero, 40: 40 
+Instrução addi $s4, $zero, 40: registrador $s4 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : sw $s4, 10($s3)
+Valores de RS e Immediate para a instrução sw $s4, 10($s3): 19 10 
+Valor calculado pela ALU para a instrução sw $s4, 10($s3): 40 
+Instrução sw $s4, 10($s3): Esta se trata de uma operação de escrita.
+Memória na posição 40 modificada. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : sll $t1, $s1, 2
+Valores de Rt e SHAMT para a instrução sll $t1, $s1, 2: 17 2
+Valor calculado pela ALU para a instrução sll $t1, $s1, 2: 4 
+Instrução sll $t1, $s1, 2: registrador $t1 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : add $t1, $s2, $t1
+Valores de RS e RT para a instrução add $t1, $s2, $t1: 18 9 
+Valor calculado pela ALU para a instrução add $t1, $s2, $t1: 12 
+Instrução add $t1, $s2, $t1: registrador $t1 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : lw $t7, 0($t1)
+Valores de RS e Immediate para a instrução 9: 
+Valor calculado pela ALU para a instrução lw $t7, 0($t1): 12 
+Instrução lw $t7, 0($t1): Valor contido no endereço de memória 12
+Instrução lw $t7, 0($t1): esta se trata de uma operação de leitura. 
+Registrador $t7 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : beq $t5, $t7, 8
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+Valores de RS e RT para a instrução beq $t5, $t7, 8: 13 15 
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+ALU instrução beq $t5, $t7, 8: Desvio não realizado. 
+Instrução finalizada no pipeline.
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : addi $s1, $s1, 1
+Valores de RS e Immediate para a instrução addi $s1, $s1, 1: 17 1 
+Valor calculado pela ALU para a instrução addi $s1, $s1, 1: 2 
+Instrução addi $s1, $s1, 1: registrador $s1 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Instrução j 28, Valor de PC: 28
+. Instrução finalizada no pipeline.
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : sll $t1, $s1, 2
+Valores de Rt e SHAMT para a instrução sll $t1, $s1, 2: 17 2
+Valor calculado pela ALU para a instrução sll $t1, $s1, 2: 8 
+Instrução sll $t1, $s1, 2: registrador $t1 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : add $t1, $s2, $t1
+Valores de RS e RT para a instrução add $t1, $s2, $t1: 18 9 
+Valor calculado pela ALU para a instrução add $t1, $s2, $t1: 16 
+Instrução add $t1, $s2, $t1: registrador $t1 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : lw $t7, 0($t1)
+Valores de RS e Immediate para a instrução 9: 
+Valor calculado pela ALU para a instrução lw $t7, 0($t1): 16 
+Instrução lw $t7, 0($t1): Valor contido no endereço de memória 16
+Instrução lw $t7, 0($t1): esta se trata de uma operação de leitura. 
+Registrador $t7 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : beq $t5, $t7, 8
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+Valores de RS e RT para a instrução beq $t5, $t7, 8: 13 15 
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+ALU instrução beq $t5, $t7, 8: Desvio não realizado. 
+Instrução finalizada no pipeline.
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : addi $s1, $s1, 1
+Valores de RS e Immediate para a instrução addi $s1, $s1, 1: 17 1 
+Valor calculado pela ALU para a instrução addi $s1, $s1, 1: 3 
+Instrução addi $s1, $s1, 1: registrador $s1 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Instrução j 28, Valor de PC: 28
+. Instrução finalizada no pipeline.
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : sll $t1, $s1, 2
+Valores de Rt e SHAMT para a instrução sll $t1, $s1, 2: 17 2
+Valor calculado pela ALU para a instrução sll $t1, $s1, 2: 12 
+Instrução sll $t1, $s1, 2: registrador $t1 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : add $t1, $s2, $t1
+Valores de RS e RT para a instrução add $t1, $s2, $t1: 18 9 
+Valor calculado pela ALU para a instrução add $t1, $s2, $t1: 20 
+Instrução add $t1, $s2, $t1: registrador $t1 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : lw $t7, 0($t1)
+Valores de RS e Immediate para a instrução 9: 
+Valor calculado pela ALU para a instrução lw $t7, 0($t1): 20 
+Instrução lw $t7, 0($t1): Valor contido no endereço de memória 20
+Instrução lw $t7, 0($t1): esta se trata de uma operação de leitura. 
+Registrador $t7 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : beq $t5, $t7, 8
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+Valores de RS e RT para a instrução beq $t5, $t7, 8: 13 15 
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+ALU instrução beq $t5, $t7, 8: Desvio não realizado. 
+Instrução finalizada no pipeline.
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : addi $s1, $s1, 1
+Valores de RS e Immediate para a instrução addi $s1, $s1, 1: 17 1 
+Valor calculado pela ALU para a instrução addi $s1, $s1, 1: 4 
+Instrução addi $s1, $s1, 1: registrador $s1 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Instrução j 28, Valor de PC: 28
+. Instrução finalizada no pipeline.
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : sll $t1, $s1, 2
+Valores de Rt e SHAMT para a instrução sll $t1, $s1, 2: 17 2
+Valor calculado pela ALU para a instrução sll $t1, $s1, 2: 16 
+Instrução sll $t1, $s1, 2: registrador $t1 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : add $t1, $s2, $t1
+Valores de RS e RT para a instrução add $t1, $s2, $t1: 18 9 
+Valor calculado pela ALU para a instrução add $t1, $s2, $t1: 24 
+Instrução add $t1, $s2, $t1: registrador $t1 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : lw $t7, 0($t1)
+Valores de RS e Immediate para a instrução 9: 
+Valor calculado pela ALU para a instrução lw $t7, 0($t1): 24 
+Instrução lw $t7, 0($t1): Valor contido no endereço de memória 24
+Instrução lw $t7, 0($t1): esta se trata de uma operação de leitura. 
+Registrador $t7 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : beq $t5, $t7, 8
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+Valores de RS e RT para a instrução beq $t5, $t7, 8: 13 15 
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+ALU instrução beq $t5, $t7, 8: Desvio não realizado. 
+Instrução finalizada no pipeline.
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : addi $s1, $s1, 1
+Valores de RS e Immediate para a instrução addi $s1, $s1, 1: 17 1 
+Valor calculado pela ALU para a instrução addi $s1, $s1, 1: 5 
+Instrução addi $s1, $s1, 1: registrador $s1 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Instrução j 28, Valor de PC: 28
+. Instrução finalizada no pipeline.
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : sll $t1, $s1, 2
+Valores de Rt e SHAMT para a instrução sll $t1, $s1, 2: 17 2
+Valor calculado pela ALU para a instrução sll $t1, $s1, 2: 20 
+Instrução sll $t1, $s1, 2: registrador $t1 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : add $t1, $s2, $t1
+Valores de RS e RT para a instrução add $t1, $s2, $t1: 18 9 
+Valor calculado pela ALU para a instrução add $t1, $s2, $t1: 28 
+Instrução add $t1, $s2, $t1: registrador $t1 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : lw $t7, 0($t1)
+Valores de RS e Immediate para a instrução 9: 
+Valor calculado pela ALU para a instrução lw $t7, 0($t1): 28 
+Instrução lw $t7, 0($t1): Valor contido no endereço de memória 28
+Instrução lw $t7, 0($t1): esta se trata de uma operação de leitura. 
+Registrador $t7 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : beq $t5, $t7, 8
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+Valores de RS e RT para a instrução beq $t5, $t7, 8: 13 15 
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+ALU instrução beq $t5, $t7, 8: Desvio não realizado. 
+Instrução finalizada no pipeline.
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : addi $s1, $s1, 1
+Valores de RS e Immediate para a instrução addi $s1, $s1, 1: 17 1 
+Valor calculado pela ALU para a instrução addi $s1, $s1, 1: 6 
+Instrução addi $s1, $s1, 1: registrador $s1 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Instrução j 28, Valor de PC: 28
+. Instrução finalizada no pipeline.
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : sll $t1, $s1, 2
+Valores de Rt e SHAMT para a instrução sll $t1, $s1, 2: 17 2
+Valor calculado pela ALU para a instrução sll $t1, $s1, 2: 24 
+Instrução sll $t1, $s1, 2: registrador $t1 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : add $t1, $s2, $t1
+Valores de RS e RT para a instrução add $t1, $s2, $t1: 18 9 
+Valor calculado pela ALU para a instrução add $t1, $s2, $t1: 32 
+Instrução add $t1, $s2, $t1: registrador $t1 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : lw $t7, 0($t1)
+Valores de RS e Immediate para a instrução 9: 
+Valor calculado pela ALU para a instrução lw $t7, 0($t1): 32 
+Instrução lw $t7, 0($t1): Valor contido no endereço de memória 32
+Instrução lw $t7, 0($t1): esta se trata de uma operação de leitura. 
+Registrador $t7 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : beq $t5, $t7, 8
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+Valores de RS e RT para a instrução beq $t5, $t7, 8: 13 15 
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+ALU instrução beq $t5, $t7, 8: Desvio não realizado. 
+Instrução finalizada no pipeline.
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : addi $s1, $s1, 1
+Valores de RS e Immediate para a instrução addi $s1, $s1, 1: 17 1 
+Valor calculado pela ALU para a instrução addi $s1, $s1, 1: 7 
+Instrução addi $s1, $s1, 1: registrador $s1 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Instrução j 28, Valor de PC: 28
+. Instrução finalizada no pipeline.
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : sll $t1, $s1, 2
+Valores de Rt e SHAMT para a instrução sll $t1, $s1, 2: 17 2
+Valor calculado pela ALU para a instrução sll $t1, $s1, 2: 28 
+Instrução sll $t1, $s1, 2: registrador $t1 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : add $t1, $s2, $t1
+Valores de RS e RT para a instrução add $t1, $s2, $t1: 18 9 
+Valor calculado pela ALU para a instrução add $t1, $s2, $t1: 36 
+Instrução add $t1, $s2, $t1: registrador $t1 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : lw $t7, 0($t1)
+Valores de RS e Immediate para a instrução 9: 
+Valor calculado pela ALU para a instrução lw $t7, 0($t1): 36 
+Instrução lw $t7, 0($t1): Valor contido no endereço de memória 36
+Instrução lw $t7, 0($t1): esta se trata de uma operação de leitura. 
+Registrador $t7 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : beq $t5, $t7, 8
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+Valores de RS e RT para a instrução beq $t5, $t7, 8: 13 15 
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+ALU instrução beq $t5, $t7, 8: Desvio não realizado. 
+Instrução finalizada no pipeline.
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : addi $s1, $s1, 1
+Valores de RS e Immediate para a instrução addi $s1, $s1, 1: 17 1 
+Valor calculado pela ALU para a instrução addi $s1, $s1, 1: 8 
+Instrução addi $s1, $s1, 1: registrador $s1 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Instrução j 28, Valor de PC: 28
+. Instrução finalizada no pipeline.
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : sll $t1, $s1, 2
+Valores de Rt e SHAMT para a instrução sll $t1, $s1, 2: 17 2
+Valor calculado pela ALU para a instrução sll $t1, $s1, 2: 32 
+Instrução sll $t1, $s1, 2: registrador $t1 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : add $t1, $s2, $t1
+Valores de RS e RT para a instrução add $t1, $s2, $t1: 18 9 
+Valor calculado pela ALU para a instrução add $t1, $s2, $t1: 40 
+Instrução add $t1, $s2, $t1: registrador $t1 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : lw $t7, 0($t1)
+Valores de RS e Immediate para a instrução 9: 
+Valor calculado pela ALU para a instrução lw $t7, 0($t1): 40 
+Instrução lw $t7, 0($t1): Valor contido no endereço de memória 40
+Instrução lw $t7, 0($t1): esta se trata de uma operação de leitura. 
+Registrador $t7 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : beq $t5, $t7, 8
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+Valores de RS e RT para a instrução beq $t5, $t7, 8: 13 15 
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+ALU: Desvio feito. Valor de PC: 48
+. Instrução finalizada no pipeline.
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : addi $t3, $zero, 120
+Valores de RS e Immediate para a instrução addi $t3, $zero, 120: 0 120 
+Valor calculado pela ALU para a instrução addi $t3, $zero, 120: 120 
+Instrução addi $t3, $zero, 120: registrador $t3 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : slt $t2, $s3, $s4
+Valores de RS e RT para a instrução 19: 
+Valor calculado pela ALU para a instrução slt $t2, $s3, $s4: 1 
+Instrução slt $t2, $s3, $s4: registrador $t2 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : beq $zero, $t2, 16
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+Valores de RS e RT para a instrução beq $zero, $t2, 16: 0 10 
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+ALU instrução beq $zero, $t2, 16: Desvio não realizado. 
+Instrução finalizada no pipeline.
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : sub $t3, $t3, $s3
+Valores de RS e RT para a instrução 11: 
+Valor calculado pela ALU para a instrução sub $t3, $t3, $s3: 90 
+Instrução sub $t3, $t3, $s3: registrador $t3 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : slt $t2, $s3, $s1
+Valores de RS e RT para a instrução 19: 
+Valor calculado pela ALU para a instrução slt $t2, $s3, $s1: 0 
+Instrução slt $t2, $s3, $s1: registrador $t2 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : beq $zero, $t2, 4
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+Valores de RS e RT para a instrução beq $zero, $t2, 4: 0 10 
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+ALU: Desvio feito. Valor de PC: 76
+. Instrução finalizada no pipeline.
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : sw $t3, 40($s4)
+Valores de RS e Immediate para a instrução sw $t3, 40($s4): 20 40 
+Valor calculado pela ALU para a instrução sw $t3, 40($s4): 80 
+Instrução sw $t3, 40($s4): Esta se trata de uma operação de escrita.
+Memória na posição 80 modificada. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Instrução jal 92, Valor de PC: 92
+ Valor de $ra: 88. Instrução finalizada no pipeline.
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : sw $t6, 44($s4)
+Valores de RS e Immediate para a instrução sw $t6, 44($s4): 20 44 
+Valor calculado pela ALU para a instrução sw $t6, 44($s4): 84 
+Instrução sw $t6, 44($s4): Esta se trata de uma operação de escrita.
+Memória na posição 84 modificada. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : or $t6, $t1, $s2
+Valores de RS e RT para a instrução 9: 
+Valor calculado pela ALU para a instrução or $t6, $t1, $s2: 40 
+Instrução or $t6, $t1, $s2: registrador $t6 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : sw $t6, 48($s4)
+Valores de RS e Immediate para a instrução sw $t6, 48($s4): 20 48 
+Valor calculado pela ALU para a instrução sw $t6, 48($s4): 88 
+Instrução sw $t6, 48($s4): Esta se trata de uma operação de escrita.
+Memória na posição 88 modificada. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : lw $t4, 40($s4)
+Valores de RS e Immediate para a instrução 20: 
+Valor calculado pela ALU para a instrução lw $t4, 40($s4): 80 
+Instrução lw $t4, 40($s4): Valor contido no endereço de memória 80
+Instrução lw $t4, 40($s4): esta se trata de uma operação de leitura. 
+Registrador $t4 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : and $t6, $t4, $s3
+Valores de RS e RT  para a instrução 12: 
+Valor calculado pela ALU para a instrução and $t6, $t4, $s3: 26 
+Instrução and $t6, $t4, $s3: registrador $t6 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : sw $t6, 52($s4)
+Valores de RS e Immediate para a instrução sw $t6, 52($s4): 20 52 
+Valor calculado pela ALU para a instrução sw $t6, 52($s4): 92 
+Instrução sw $t6, 52($s4): Esta se trata de uma operação de escrita.
+Memória na posição 92 modificada. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : or $t6, $t4, $s3
+Valores de RS e RT para a instrução 12: 
+Valor calculado pela ALU para a instrução or $t6, $t4, $s3: 94 
+Instrução or $t6, $t4, $s3: registrador $t6 modificado. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : sw $t6, 56($s4)
+Valores de RS e Immediate para a instrução sw $t6, 56($s4): 20 56 
+Valor calculado pela ALU para a instrução sw $t6, 56($s4): 96 
+Instrução sw $t6, 56($s4): Esta se trata de uma operação de escrita.
+Memória na posição 96 modificada. 
+Instrução finalizada. 
+============================================= 
+Fim do estágio 
+============================================= 
+Fetch da instrução : jr $ra
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+Valor de RS para a instrução 31: 
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+Instrução jr $ra, Valor de PC: 88
+. Instrução finalizada no pipeline.
+============================================= 
+Fim do estágio 
+============================================= 
+Instrução j 132, Valor de PC: 132
+. Instrução finalizada no pipeline.
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline
+============================================= 
+Fim do estágio 
+============================================= 
+============================================= 
+Fim do estágio 
+============================================= 

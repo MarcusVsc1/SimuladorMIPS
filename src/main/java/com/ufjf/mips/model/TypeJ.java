@@ -41,4 +41,10 @@ public class TypeJ extends Instruction{
 		
 	}
 
+	@Override
+	public boolean verifyDataHazard() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

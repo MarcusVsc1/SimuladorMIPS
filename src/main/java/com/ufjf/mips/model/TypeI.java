@@ -59,5 +59,18 @@ public class TypeI extends Instruction{
 	public void realizarExecucaoDireta() {
 		EInstruction.valueOf(super.getCommand()).execucaoDireta(this);;
 	}
+	
+	@Override
+	public boolean verifyDataHazard() {
+		for(int i = MipsOperational.pipeline.indexOf(this) - 1; i >=0 ; i --) {
+			Instruction in = MipsOperational.pipeline.get(i);
+			if((in instanceof TypeR && (((TypeR) in).getRd() == getRs() || ((TypeR) in).getRd() == getRt()))
+					|| ((in.getCommand().equals("LW")  && (((TypeI)in).getRt() == getRs() || 
+					((TypeI)in).getRt() == getRt())))){
+						return false;
+					}
+			}
+		return true;
+	}
 
 }

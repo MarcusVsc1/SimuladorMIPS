@@ -23,6 +23,10 @@ import javax.swing.table.DefaultTableModel;
 
 import com.ufjf.mips.model.MipsOperational;
 import com.ufjf.mips.utils.FileManager;
+import java.awt.Label;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  *
@@ -77,13 +81,15 @@ public class MipsForm extends javax.swing.JFrame {
 	private void iniciarLog() {
 		log = new JTextArea();
         log.setText("Log de execução:");
-        log.setWrapStyleWord(true);
-        log.setLineWrap(true);
+        log.setWrapStyleWord(false);
         log.setEditable(false);
+        scrollPane.setHorizontalScrollBarPolicy(scrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         scrollPane.setViewportView(log);
+        
 	}
 	
 	private void iniciarNovaInstrução() {
+		ops.piped =  false;
 		instrucoes.clearSelection();
     	instrucoes.setRowSelectionInterval(ops.bancoRegistradores[32]/4, ops.bancoRegistradores[32]/4);
     	ops.execucaoSequencial();
@@ -91,11 +97,38 @@ public class MipsForm extends javax.swing.JFrame {
 	}
 	
 	private void executarTodasAsInstrucoes() {
+		ops.piped =  false;
 		Date start = new Date();
 		try {
 			while(ops.bancoRegistradores[32]/4 < ops.getAssemblyList().size()) {
 				iniciarNovaInstrução();
-				if(getTime(start) > 4) 
+				if(getTime(start) > 4 && (ops.bancoRegistradores[32]/4 < ops.getAssemblyList().size())) 
+					throw new TimeLimitExceededException("Execução direta entrou em loop infinito e será terminada.");
+			}
+			finalizarPrograma();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(rootPane, e.getMessage(),
+                    "Erro!",0);
+			this.setVisible(false);
+		} 
+	}
+	
+	private void pipelineSequencial() throws CloneNotSupportedException {
+		ops.pipelineSequencial();
+		atualizarUI();
+		ops.piped = true;
+		if(ops.bancoRegistradores[32]/4 >= ops.getAssemblyList().size()) {
+        	finalizarPrograma();
+        }
+	}
+	
+	private void executarTodoPipeline() {
+		ops.piped =  false;
+		Date start = new Date();
+		try {
+			while(ops.bancoRegistradores[32]/4 < ops.getAssemblyList().size()) {
+				pipelineSequencial();
+				if(getTime(start) > 4 && (ops.bancoRegistradores[32]/4 < ops.getAssemblyList().size())) 
 					throw new TimeLimitExceededException("Execução direta entrou em loop infinito e será terminada.");
 			}
 			finalizarPrograma();
@@ -111,8 +144,11 @@ public class MipsForm extends javax.swing.JFrame {
 		MipsOperational.log = "Log de execução: \n";
 		atualizarUI();
 		jButton1.setEnabled(true);
-		jButton2.setEnabled(true);	
+		jButton2.setEnabled(true);
 		ops.setClock(0);
+		btnPipelineDireto.setEnabled(true);
+		btnPipelineSequencial.setEnabled(true);
+		ops.piped =  false;
 	}
 
 	private void finalizarPrograma() {
@@ -124,6 +160,7 @@ public class MipsForm extends javax.swing.JFrame {
 		String memo = FileManager.criarStringArrayMemoria(ops.memoria);
 		try {
 			FileManager.escreverEmArquivo(memo, "memoria.txt");
+			FileManager.escreverEmArquivo(ops.log, "log.txt");
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(rootPane, "Falha ao criar algum dos arquivos.",
 			        "Erro!",0);
@@ -289,13 +326,42 @@ public class MipsForm extends javax.swing.JFrame {
         scrollPane = new JScrollPane();
         
         JScrollPane scrollPane_1 = new JScrollPane();
+        
+        btnPipelineDireto = new JButton();
+        btnPipelineDireto.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		executarTodoPipeline();
+        	}
+
+			
+        });
+        btnPipelineDireto.setText("Pipeline direto >>");
+        
+        btnPipelineSequencial = new JButton();
+        btnPipelineSequencial.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		try {
+					pipelineSequencial();
+				} catch (CloneNotSupportedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+        	}
+
+			
+        });
+        btnPipelineSequencial.setText("Pipeline Sequencial >");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
         	layout.createParallelGroup(Alignment.TRAILING)
         		.addGroup(layout.createSequentialGroup()
         			.addContainerGap()
-        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+        				.addGroup(layout.createSequentialGroup()
+        					.addComponent(btnPipelineDireto, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
+        					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        					.addComponent(btnPipelineSequencial, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE))
         				.addGroup(layout.createSequentialGroup()
         					.addComponent(jButton1)
         					.addGap(18)
@@ -320,16 +386,20 @@ public class MipsForm extends javax.swing.JFrame {
         					.addComponent(jScrollPane4, GroupLayout.PREFERRED_SIZE, 493, GroupLayout.PREFERRED_SIZE)
         					.addPreferredGap(ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
         					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        						.addComponent(jButton1)
         						.addComponent(jButton3)
-        						.addComponent(jButton2)))
+        						.addComponent(jButton2)
+        						.addComponent(jButton1)))
         				.addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 555, GroupLayout.PREFERRED_SIZE)
         				.addGroup(layout.createSequentialGroup()
         					.addGap(27)
         					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 290, GroupLayout.PREFERRED_SIZE)
         					.addGap(18)
         					.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)))
-        			.addGap(239))
+        			.addGap(32)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(btnPipelineDireto)
+        				.addComponent(btnPipelineSequencial))
+        			.addGap(184))
         );
         
         memoria = new JTable();
@@ -365,11 +435,15 @@ public class MipsForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        executarTodasAsInstrucoes();
+    	btnPipelineDireto.setEnabled(false);
+		btnPipelineSequencial.setEnabled(false);
+    	executarTodasAsInstrucoes();
     }//GEN-LAST:event_jButton1ActionPerformed
 
 	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         iniciarNovaInstrução();
+        btnPipelineDireto.setEnabled(false);
+		btnPipelineSequencial.setEnabled(false);
         if(ops.bancoRegistradores[32]/4 >= ops.getAssemblyList().size()) {
         	finalizarPrograma();
         }
@@ -437,4 +511,6 @@ public class MipsForm extends javax.swing.JFrame {
     private javax.swing.JTable registradores;
     private JScrollPane scrollPane;
     private JTable memoria;
+    private JButton btnPipelineDireto;
+    private JButton btnPipelineSequencial;
 }

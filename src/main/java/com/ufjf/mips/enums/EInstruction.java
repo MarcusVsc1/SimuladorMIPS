@@ -21,12 +21,46 @@ public enum EInstruction {
 		@Override
 		public void execucaoDireta(Instruction ins) {
 			ins = (TypeR) ins;
-			String run = "Iniciando instrução : "+ins.createAssembly()+"\n";
+			String run = "";
+			if(!MipsOperational.piped) {
+				run = "Iniciando instrução : "+ins.createAssembly()+"\n";
+				run = run + "Instrução rodada com sucesso! \n";
+				MipsOperational.bancoRegistradores[32] += 4;
+			} else {
+				MipsOperational.log +=String.format("Instrução %s: registrador %s modificado. \n"
+						+ "Instrução finalizada. \n", ins.createAssembly(),
+						MipsOperational.mapa.get(((TypeR)ins).getRd())
+						);
+			}
+			
 			MipsOperational.bancoRegistradores[((TypeR) ins).getRd()] = MipsOperational.bancoRegistradores[((TypeR) ins).getRs()] + 
 					MipsOperational.bancoRegistradores[((TypeR) ins).getRt()];
-			run = run + "Instrução rodada com sucesso! \n";
 			MipsOperational.log += run;
-			MipsOperational.bancoRegistradores[32] += 4;
+		}
+		
+		@Override
+		public boolean read(Instruction ins) {
+			boolean hazard = ins.verifyDataHazard();
+			if(!hazard) return false;
+			MipsOperational.log +=String.format("Valores de RS e RT para a instrução %s: %s %s \n", ins.createAssembly(), 
+					((TypeR)ins).getRs(), 
+					((TypeR)ins).getRt()
+					);
+			return true;
+		}
+		
+		@Override
+		public boolean alu(Instruction ins) {
+			Integer soma = MipsOperational.bancoRegistradores[((TypeR) ins).getRs()] + 
+					MipsOperational.bancoRegistradores[((TypeR) ins).getRt()];
+			representarALU(ins, soma);
+			return true;
+		}
+		
+		@Override
+		public boolean register(Instruction ins) {
+			ins.realizarExecucaoDireta();
+			return true;
 		}
 	}, 
 	SUB(34) {
@@ -42,12 +76,44 @@ public enum EInstruction {
 		@Override
 		public void execucaoDireta(Instruction ins) {
 			ins = (TypeR) ins;
-			String run = "Iniciando instrução : "+ins.createAssembly()+"\n";
+			String run = "";
+			if(!MipsOperational.piped) {
+				run = "Iniciando instrução : "+ins.createAssembly()+"\n";
+				run = run + "Instrução rodada com sucesso! \n";
+				MipsOperational.bancoRegistradores[32] += 4;
+			} else {
+				MipsOperational.log +=String.format("Instrução %s: registrador %s modificado. \n"
+						+ "Instrução finalizada. \n", ins.createAssembly(),
+						MipsOperational.mapa.get(((TypeR)ins).getRd())
+						);
+			}
+			
 			MipsOperational.bancoRegistradores[((TypeR) ins).getRd()] = MipsOperational.bancoRegistradores[((TypeR) ins).getRs()] - 
 					MipsOperational.bancoRegistradores[((TypeR) ins).getRt()];
-			run = run + "Instrução rodada com sucesso! \n";
 			MipsOperational.log += run;
-			MipsOperational.bancoRegistradores[32] += 4;
+		}
+		
+		@Override
+		public boolean read(Instruction ins) {
+			boolean hazard = ins.verifyDataHazard();
+			if(!hazard) return false;
+			MipsOperational.log +=String.format("Valores de RS e RT para a instrução %s: \n", ((TypeR)ins).getRs(), 
+					((TypeR)ins).getRt(), ins.createAssembly());
+			return true;
+		}
+		
+		@Override
+		public boolean alu(Instruction ins) {
+			Integer soma = MipsOperational.bancoRegistradores[((TypeR) ins).getRs()] - 
+					MipsOperational.bancoRegistradores[((TypeR) ins).getRt()];
+			representarALU(ins, soma);
+			return true;
+		}	
+		
+		@Override
+		public boolean register(Instruction ins) {
+			ins.realizarExecucaoDireta();
+			return true;
 		}
 	}, 
 	AND(36) {
@@ -63,12 +129,42 @@ public enum EInstruction {
 		@Override
 		public void execucaoDireta(Instruction ins) {
 			ins = (TypeR) ins;
-			String run = "Iniciando instrução : "+ins.createAssembly()+"\n";
+			String run = "";
+			if(!MipsOperational.piped) {
+				run = "Iniciando instrução : "+ins.createAssembly()+"\n";
+				run = run + "Instrução rodada com sucesso! \n";
+				MipsOperational.bancoRegistradores[32] += 4;
+			} else {
+				MipsOperational.log +=String.format("Instrução %s: registrador %s modificado. \n"
+						+ "Instrução finalizada. \n", ins.createAssembly(),
+						MipsOperational.mapa.get(((TypeR)ins).getRd())
+						);
+			}
 			MipsOperational.bancoRegistradores[((TypeR) ins).getRd()] = MipsOperational.bancoRegistradores[((TypeR) ins).getRs()] & 
 					MipsOperational.bancoRegistradores[((TypeR) ins).getRt()];
-			run = run + "Instrução rodada com sucesso! \n";
 			MipsOperational.log += run;
-			MipsOperational.bancoRegistradores[32] += 4;
+		}
+		
+		@Override
+		public boolean read(Instruction ins) {
+			boolean hazard = ins.verifyDataHazard();
+			if(!hazard) return false;
+			MipsOperational.log +=String.format("Valores de RS e RT  para a instrução %s: \n", ((TypeR)ins).getRs(), 
+					((TypeR)ins).getRt(), ins.createAssembly());
+			return true;
+		}
+		
+		@Override
+		public boolean alu(Instruction ins) {
+			Integer soma = MipsOperational.bancoRegistradores[((TypeR) ins).getRs()] & 
+					MipsOperational.bancoRegistradores[((TypeR) ins).getRt()];
+			representarALU(ins, soma);
+			return true;
+		}
+		@Override
+		public boolean register(Instruction ins) {
+			ins.realizarExecucaoDireta();
+			return true;
 		}
 	}, 
 	OR(37) {
@@ -84,12 +180,43 @@ public enum EInstruction {
 		@Override
 		public void execucaoDireta(Instruction ins) {
 			ins = (TypeR) ins;
-			String run = "Iniciando instrução : "+ins.createAssembly()+"\n";
+			String run = "";
+			if(!MipsOperational.piped) {
+				run = "Iniciando instrução : "+ins.createAssembly()+"\n";
+				run = run + "Instrução rodada com sucesso! \n";
+				MipsOperational.bancoRegistradores[32] += 4;
+			} else {
+				MipsOperational.log +=String.format("Instrução %s: registrador %s modificado. \n"
+						+ "Instrução finalizada. \n", ins.createAssembly(),
+						MipsOperational.mapa.get(((TypeR)ins).getRd())
+						);
+			}
 			MipsOperational.bancoRegistradores[((TypeR) ins).getRd()] = MipsOperational.bancoRegistradores[((TypeR) ins).getRs()] | 
 					MipsOperational.bancoRegistradores[((TypeR) ins).getRt()];
-			run = run + "Instrução rodada com sucesso! \n";
 			MipsOperational.log += run;
-			MipsOperational.bancoRegistradores[32] += 4;
+		}
+		
+		@Override
+		public boolean read(Instruction ins) {
+			boolean hazard = ins.verifyDataHazard();
+			if(!hazard) return false;
+			MipsOperational.log +=String.format("Valores de RS e RT para a instrução %s: \n", ((TypeR)ins).getRs(), 
+					((TypeR)ins).getRt(), ins.createAssembly());
+			return true;
+		}
+		
+		@Override
+		public boolean alu(Instruction ins) {
+			Integer soma = MipsOperational.bancoRegistradores[((TypeR) ins).getRs()] | 
+					MipsOperational.bancoRegistradores[((TypeR) ins).getRt()];
+			representarALU(ins, soma);
+			return true;
+		}
+		
+		@Override
+		public boolean register(Instruction ins) {
+			ins.realizarExecucaoDireta();
+			return true;
 		}
 	}, 
 	SLT(42) {
@@ -105,13 +232,44 @@ public enum EInstruction {
 		@Override
 		public void execucaoDireta(Instruction ins) {
 			ins = (TypeR) ins;
-			String run = "Iniciando instrução : "+ins.createAssembly()+"\n";
+			String run = "";
+			if(!MipsOperational.piped) {
+				run = "Iniciando instrução : "+ins.createAssembly()+"\n";
+				run = run + "Instrução rodada com sucesso! \n";
+				MipsOperational.bancoRegistradores[32] += 4;
+			} else {
+				MipsOperational.log +=String.format("Instrução %s: registrador %s modificado. \n"
+						+ "Instrução finalizada. \n", ins.createAssembly(),
+						MipsOperational.mapa.get(((TypeR)ins).getRd())
+						);
+			}
 			MipsOperational.bancoRegistradores[((TypeR) ins).getRd()] = 
 					MipsOperational.bancoRegistradores[((TypeR) ins).getRs()] <	MipsOperational.bancoRegistradores[((TypeR) ins).getRt()] ?
 							1 : 0;
-			run = run + "Instrução rodada com sucesso! \n";
 			MipsOperational.log += run;
-			MipsOperational.bancoRegistradores[32] += 4;
+		}
+		
+		@Override
+		public boolean read(Instruction ins) {
+			boolean hazard = ins.verifyDataHazard();
+			if(!hazard) return false;
+			MipsOperational.log +=String.format("Valores de RS e RT para a instrução %s: \n", ((TypeR)ins).getRs(), 
+					((TypeR)ins).getRt(), ins.createAssembly());
+			return true;
+		}
+		
+		@Override
+		public boolean alu(Instruction ins) {
+			Integer result = MipsOperational.bancoRegistradores[((TypeR) ins).getRs()] <	MipsOperational.bancoRegistradores[((TypeR) ins).getRt()] ?
+					1 : 0;
+			representarALU(ins, result);
+			return true;
+		}
+		
+		@Override
+		public boolean register(Instruction ins) {
+			ins.realizarExecucaoDireta();
+			return true;
 		}
 	}, 
 	SW(43) {
@@ -128,12 +286,44 @@ public enum EInstruction {
 		@Override
 		public void execucaoDireta(Instruction ins) {
 			ins = (TypeI) ins;
-			String run = "Iniciando instrução : "+ins.createAssembly()+"\n";
-			MipsOperational.memoria[(MipsOperational.bancoRegistradores[((TypeI) ins).getRs()] + ((TypeI) ins).getImm()) / 4] 
+			String run = "";
+			Integer posicao = (MipsOperational.bancoRegistradores[((TypeI) ins).getRs()] + ((TypeI) ins).getImm());
+			if(!MipsOperational.piped) {
+				run = "Iniciando instrução : "+ins.createAssembly()+"\n";
+				run += "Instrução rodada com sucesso! \n";
+				MipsOperational.bancoRegistradores[32] += 4;
+			} else {
+					run += String.format("Instrução %s: Esta se trata de uma operação de escrita."
+							+ "\nMemória na posição %s modificada. "
+							+ "\nInstrução finalizada. \n", ins.createAssembly(),
+							posicao);
+			}
+			MipsOperational.memoria[posicao / 4] 
 					 = MipsOperational.bancoRegistradores[((TypeI) ins).getRt()];
-			run = run + "Instrução rodada com sucesso! \n";
 			MipsOperational.log += run;
-			MipsOperational.bancoRegistradores[32] += 4;
+		}
+		
+		@Override
+		public boolean read(Instruction ins) {
+			boolean hazard = ins.verifyDataHazard();
+			if(!hazard) return false;
+			MipsOperational.log +=String.format("Valores de RS e Immediate para a instrução %s: %s %s \n", ins.createAssembly(),
+					((TypeI)ins).getRs(), 
+					((TypeI)ins).getImm());
+			return true;
+		}
+		
+		@Override
+		public boolean alu(Instruction ins) {
+			Integer result = ((TypeI) ins).getImm() + MipsOperational.bancoRegistradores[((TypeI) ins).getRs()];
+			representarALU(ins, result);
+			return true;
+		}	
+		
+		@Override
+		public boolean memo(Instruction ins) {
+			ins.realizarExecucaoDireta();
+			return true;
 		}
 	}, 
 	LW(35) {
@@ -151,12 +341,51 @@ public enum EInstruction {
 		@Override
 		public void execucaoDireta(Instruction ins) {
 			ins = (TypeI) ins;
-			String run = "Iniciando instrução : "+ins.createAssembly()+"\n";
+			String run = "";
+			if(!MipsOperational.piped) {
+				run = "Iniciando instrução : "+ins.createAssembly()+"\n";
+				run += "Instrução rodada com sucesso! \n";
+				MipsOperational.bancoRegistradores[32] += 4;				
+			} else {
+					MipsOperational.log +=String.format("Instrução %s: esta se trata de uma operação de leitura. "
+							+ "\nRegistrador %s modificado. \n"
+							+ "Instrução finalizada. \n", ins.createAssembly(),
+							MipsOperational.mapa.get(((TypeI)ins).getRt())
+							);
+				}
 			MipsOperational.bancoRegistradores[((TypeI) ins).getRt()]
-					 = MipsOperational.memoria[(MipsOperational.bancoRegistradores[((TypeI) ins).getRs()] + ((TypeI) ins).getImm()) / 4];
-			run = run + "Instrução rodada com sucesso! \n";
+					 = MipsOperational.memoria[(MipsOperational.bancoRegistradores[((TypeI) ins).getRs()] + 
+							 ((TypeI) ins).getImm()) / 4];
 			MipsOperational.log += run;
-			MipsOperational.bancoRegistradores[32] += 4;
+		}
+		
+		@Override
+		public boolean read(Instruction ins) {
+			boolean hazard = ins.verifyDataHazard();
+			if(!hazard) return false;
+			MipsOperational.log +=String.format("Valores de RS e Immediate para a instrução %s: \n", ((TypeI)ins).getRs(), 
+					((TypeI)ins).getImm(), ins.createAssembly());
+			return true;
+		}
+		
+		@Override
+		public boolean alu(Instruction ins) {
+			Integer result = ((TypeI) ins).getImm() + MipsOperational.bancoRegistradores[((TypeI) ins).getRs()];
+			representarALU(ins, result);
+			return true;
+		}
+		@Override
+		public boolean register(Instruction ins) {
+			ins.realizarExecucaoDireta();
+			return true;
+		}
+		@Override
+		public boolean memo(Instruction ins) {
+			Integer result = ((TypeI) ins).getImm() + MipsOperational.bancoRegistradores[((TypeI) ins).getRs()];
+			MipsOperational.log +=String.format("Instrução %s: Valor contido no endereço de memória %s\n", ins.createAssembly(),
+					result,
+					MipsOperational.bancoRegistradores[result/4]);
+			return true;
 		}
 	}, 
 	ADDI(8) {
@@ -173,12 +402,44 @@ public enum EInstruction {
 		@Override
 		public void execucaoDireta(Instruction ins) {
 			ins = (TypeI) ins;
-			String run = "Iniciando instrução : "+ins.createAssembly()+"\n";
+			String run = "";
+			if(!MipsOperational.piped) {
+				run = "Iniciando instrução : "+ins.createAssembly()+"\n";
+				run = run + "Instrução rodada com sucesso! \n";
+				MipsOperational.bancoRegistradores[32] += 4;
+			}
+			else {
+				MipsOperational.log +=String.format("Instrução %s: registrador %s modificado. \n"
+						+ "Instrução finalizada. \n", ins.createAssembly(),
+						MipsOperational.mapa.get(((TypeI)ins).getRt())
+						);
+			}
 			MipsOperational.bancoRegistradores[((TypeI) ins).getRt()] = MipsOperational.bancoRegistradores[((TypeI) ins).getRs()] + 
 					((TypeI) ins).getImm();
-			run = run + "Instrução rodada com sucesso! \n";
 			MipsOperational.log += run;
-			MipsOperational.bancoRegistradores[32] += 4;
+		}
+		
+		@Override
+		public boolean read(Instruction ins) {
+			boolean hazard = ins.verifyDataHazard();
+			if(!hazard) return false;
+			MipsOperational.log +=String.format("Valores de RS e Immediate para a instrução %s: %s %s \n", ins.createAssembly(),
+					((TypeI)ins).getRs(), 
+					((TypeI)ins).getImm());
+			return true;
+		}
+		
+		@Override
+		public boolean alu(Instruction ins) {
+			Integer result = ((TypeI) ins).getImm() + MipsOperational.bancoRegistradores[((TypeI) ins).getRs()];
+			representarALU(ins, result);
+			return true;
+		}
+		
+		@Override
+		public boolean register(Instruction ins) {
+			ins.realizarExecucaoDireta();
+			return true;
 		}
 	},
 	SLL(0) {
@@ -194,12 +455,46 @@ public enum EInstruction {
 		@Override
 		public void execucaoDireta(Instruction ins) {
 			ins = (TypeR) ins;
-			String run = "Iniciando instrução : "+ins.createAssembly()+"\n";
+			String run = "";
+			if(!MipsOperational.piped) {
+				run = "Iniciando instrução : "+ins.createAssembly()+"\n";
+				run += "Instrução rodada com sucesso! \n";
+				MipsOperational.bancoRegistradores[32] += 4;
+			} else {
+				MipsOperational.log +=String.format("Instrução %s: registrador %s modificado. \n"
+						+ "Instrução finalizada. \n", ins.createAssembly(),
+						MipsOperational.mapa.get(((TypeR)ins).getRd())
+						);
+			}
 			MipsOperational.bancoRegistradores[((TypeR) ins).getRd()] = MipsOperational.bancoRegistradores[((TypeR) ins).getRt()] <<
 					((TypeR) ins).getShamt();
-			run = run + "Instrução rodada com sucesso! \n";
-			MipsOperational.log += run;
-			MipsOperational.bancoRegistradores[32] += 4;			
+			MipsOperational.log += run;		
+		}
+		
+		
+		@Override
+		public boolean read(Instruction ins) {
+			boolean hazard = ins.verifyDataHazard();
+			if(!hazard) return false;
+			MipsOperational.log +=String.format("Valores de Rt e SHAMT para a instrução %s: %s %s\n", ins.createAssembly(),
+					((TypeR)ins).getRt(), 
+					((TypeR)ins).getShamt()
+					);
+			return true;
+		}
+		
+		@Override
+		public boolean alu(Instruction ins) {
+			Integer result = MipsOperational.bancoRegistradores[((TypeR) ins).getRt()] <<
+					((TypeR) ins).getShamt();
+			representarALU(ins, result);
+			return true;
+		}
+		
+		@Override
+		public boolean register(Instruction ins) {
+			ins.realizarExecucaoDireta();
+			return true;
 		}
 	},
 	BEQ(4) {
@@ -216,13 +511,38 @@ public enum EInstruction {
 		@Override
 		public void execucaoDireta(Instruction ins) {
 			ins = (TypeI) ins;
-			String run = "Iniciando instrução : "+ins.createAssembly()+"\n";
-			MipsOperational.bancoRegistradores[32] += 
+			Integer branch = 
 					MipsOperational.bancoRegistradores[((TypeI) ins).getRs()] == MipsOperational.bancoRegistradores[((TypeI) ins).getRt()] ?
-					((TypeI) ins).getImm() : 0;
-			run = run + "Instrução rodada com sucesso! \n";
-			MipsOperational.log += run;
-			MipsOperational.bancoRegistradores[32] += 4;			
+							((TypeI) ins).getImm() : 0;
+			MipsOperational.bancoRegistradores[32] += branch;
+			String run = "";
+			if(!MipsOperational.piped) {
+				MipsOperational.bancoRegistradores[32] += 4;
+				run = "Iniciando instrução : "+ins.createAssembly()+"\n";
+				run = run + "Instrução rodada com sucesso! \n";
+			}else {
+				run += branch != 0 ? 
+						String.format("ALU: Desvio feito. Valor de PC: %s\n. Instrução finalizada no pipeline.\n", 
+						MipsOperational.bancoRegistradores[32]) : 
+							String.format("ALU instrução %s: Desvio não realizado. \nInstrução finalizada no pipeline.\n", 
+									ins.createAssembly(), MipsOperational.bancoRegistradores[32]);				
+			}
+			MipsOperational.log += run;	
+		}
+		
+		@Override
+		public boolean read(Instruction ins) {
+			boolean hazard = ins.verifyDataHazard();
+			if(!hazard) return false;
+			MipsOperational.log +=String.format("Valores de RS e RT para a instrução %s: %s %s \n", ins.createAssembly(),
+					((TypeI)ins).getRs(), ((TypeI)ins).getRt());
+			return true;
+		}
+		
+		@Override
+		public boolean alu(Instruction ins) {
+			ins.realizarExecucaoDireta();
+			return true;
 		}
 	}, 
 	BNE(5) {
@@ -239,13 +559,31 @@ public enum EInstruction {
 		@Override
 		public void execucaoDireta(Instruction ins) {
 			ins = (TypeI) ins;
-			String run = "Iniciando instrução : "+ins.createAssembly()+"\n";
-			MipsOperational.bancoRegistradores[32] += 
+			Integer branch =
 					MipsOperational.bancoRegistradores[((TypeI) ins).getRs()] != MipsOperational.bancoRegistradores[((TypeI) ins).getRt()] ?
-					((TypeI) ins).getImm() : 0;
-			run = run + "Instrução rodada com sucesso! \n";
-			MipsOperational.log += run;
-			MipsOperational.bancoRegistradores[32] += 4;
+							((TypeI) ins).getImm() : 0;
+			MipsOperational.bancoRegistradores[32] += branch;
+			String run = "";
+			if(!MipsOperational.piped) {
+				MipsOperational.bancoRegistradores[32] += 4;
+				run = "Iniciando instrução : "+ins.createAssembly()+"\n";
+				run = run + "Instrução rodada com sucesso! \n";
+			}else {
+				run += branch != 0 ? 
+						String.format("ALU: Desvio feito. Valor de PC: %s\n. Instrução finalizada no pipeline.\n", 
+						MipsOperational.bancoRegistradores[32]) : 
+							String.format("ALU instrução %s: Desvio não realizado. Valor de PC: %s\n. Instrução finalizada no pipeline.\n", 
+									ins.createAssembly(), MipsOperational.bancoRegistradores[32]);				
+			}
+			MipsOperational.log += run;	
+		}
+		
+		@Override
+		public boolean read(Instruction ins) {
+			boolean hazard = ins.verifyDataHazard();
+			if(!hazard) return false;
+			MipsOperational.log +=String.format("Valores de RS e RT para a instrução %s: \n", ((TypeI)ins).getRs(), ((TypeI)ins).getRt());
+			return true;
 		}
 	},
 	J(2) {
@@ -259,10 +597,24 @@ public enum EInstruction {
 		@Override
 		public void execucaoDireta(Instruction ins) {
 			ins = (TypeJ) ins;
-			String run = "Iniciando instrução : "+ins.createAssembly()+"\n";
 			MipsOperational.bancoRegistradores[32] = ((TypeJ) ins).getAdd();
-			run = run + "Instrução rodada com sucesso! \n";
+			String run = "";
+			if(!MipsOperational.piped) {
+				run = "Iniciando instrução : "+ins.createAssembly()+"\n";
+				run = run + "Instrução rodada com sucesso! \n";
+			}else {
+				run += String.format("Instrução %s, Valor de PC: %s\n. Instrução finalizada no pipeline.\n", 
+						ins.createAssembly(),  MipsOperational.bancoRegistradores[32]);
+				MipsOperational.bancoRegistradores[32] -= 4;
+			}
 			MipsOperational.log += run;		
+		}
+		
+		@Override
+		public boolean fetch(Instruction ins) {
+			String run = "Fetch da instrução : "+ins.createAssembly()+"\n";
+			ins.realizarExecucaoDireta();
+			return true;
 		}
 	}, 
 	JR(-1) {
@@ -275,12 +627,33 @@ public enum EInstruction {
 
 		@Override
 		public void execucaoDireta(Instruction ins) {
+			String run = "";
 			ins = (TypeR) ins;
-			String run = "Iniciando instrução : "+ins.createAssembly()+"\n";
 			MipsOperational.bancoRegistradores[32] = MipsOperational.bancoRegistradores[((TypeR) ins).getRs()];
-			run = run + "Instrução rodada com sucesso! \n";
+			if(!MipsOperational.piped) {
+				run += "Iniciando instrução : "+ins.createAssembly()+"\n";
+				run += "Instrução rodada com sucesso! \n";
+			}else {
+				run += String.format("Instrução %s, Valor de PC: %s\n. Instrução finalizada no pipeline.\n", 
+						ins.createAssembly(),  MipsOperational.bancoRegistradores[32]);
+				MipsOperational.bancoRegistradores[32] -= 4;
+			}
 			MipsOperational.log += run;			
 		}
+		
+		@Override
+		public boolean read(Instruction ins) {
+			boolean hazard = ins.verifyDataHazard();
+			if(!hazard) return false;
+			MipsOperational.log +=String.format("Valor de RS para a instrução %s: \n", ((TypeR)ins).getRs());
+			return true;
+		}
+		
+		@Override
+		public boolean alu(Instruction ins) {
+			ins.realizarExecucaoDireta();
+			return true;
+		}	
 	}, 
 	JAL(3) {
 		@Override
@@ -293,11 +666,25 @@ public enum EInstruction {
 		@Override
 		public void execucaoDireta(Instruction ins) {
 			ins = (TypeJ) ins;
-			String run = "Iniciando instrução : "+ins.createAssembly()+"\n";
 			MipsOperational.bancoRegistradores[31] = MipsOperational.bancoRegistradores[32] + 4;
 			MipsOperational.bancoRegistradores[32] = ((TypeJ) ins).getAdd();
-			run = run + "Instrução rodada com sucesso! \n";
+			String run = "";
+			if(!MipsOperational.piped) {
+				run = "Iniciando instrução : "+ins.createAssembly()+"\n";
+				run = run + "Instrução rodada com sucesso! \n";
+			}else {
+				run += String.format("Instrução %s, Valor de PC: %s\n Valor de $ra: %s. Instrução finalizada no pipeline.\n", 
+						ins.createAssembly(), MipsOperational.bancoRegistradores[32], MipsOperational.bancoRegistradores[31]);
+			}
+			
 			MipsOperational.log += run;		
+		}
+		
+		@Override
+		public boolean fetch(Instruction ins) {
+			String run = "Fetch da instrução : "+ins.createAssembly()+"\n";
+			ins.realizarExecucaoDireta();
+			return true;
 		}
 	};
 	private final Integer ins;
@@ -306,7 +693,6 @@ public enum EInstruction {
 		this.ins = i;
 	} 
 	
-
 	
 	public Integer getIns() {
 		return ins;
@@ -317,4 +703,29 @@ public enum EInstruction {
 	//public abstract void runFunction();
 	public abstract String createAssembly(Instruction ins);
 	public abstract void execucaoDireta(Instruction ins);
+	
+	public boolean fetch(Instruction ins) {
+		MipsOperational.log += "Fetch da instrução : "+ins.createAssembly()+"\n";
+		return true;
+	}
+	
+	public boolean read(Instruction ins) {
+		return true;
+	}
+	
+	public boolean alu(Instruction ins) {
+		return true;
+	}
+	
+	public void representarALU(Instruction ins, Integer valor) {
+		MipsOperational.log +=String.format("Valor calculado pela ALU para a instrução %s: %s \n", ins.createAssembly(), valor);
+	}
+	
+	public boolean register(Instruction ins) {
+		return true;
+	}
+	
+	public boolean memo(Instruction ins) {
+		return true;
+	}
 }

@@ -7,8 +7,14 @@ package com.ufjf.mips.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
+
+import org.springframework.util.SerializationUtils;
 
 import com.ufjf.mips.interfaces.Instruction;
 
@@ -24,10 +30,13 @@ public class MipsOperational {
 	private Integer clock;
 	public static final Integer[] typeIOpCode = {8, 4, 5, 35, 43};
 	public static final Integer[] typeJOpCode = {2, 3};
+	public static final String[] controlHazard = {"BEQ","BNE","J","JR","JAL"}; 
 	public static HashMap<Integer, String> mapa = new HashMap<Integer, String>();
 	public static Integer[] bancoRegistradores;
 	public static Integer[] memoria;
 	public static String log;
+	public static boolean piped;
+	public static List<Instruction> pipeline = Collections.synchronizedList (new ArrayList<Instruction>()); 
 	
 
 	public MipsOperational(String[] binaryInstructions) {
@@ -57,6 +66,48 @@ public class MipsOperational {
 		instrucao.realizarExecucaoDireta();
 		clock++;
 		log +="Ciclo de clock atual: "+clock+"\n";
+	}
+	
+	public void pipelineSequencial() throws CloneNotSupportedException {
+		if(pipeline.isEmpty()) {
+			pipeline.add(instructions.get(bancoRegistradores[32]/4));
+		}
+		Iterator <Instruction> it = pipeline.iterator();
+		boolean newAdd = true;
+		while(it.hasNext()) {
+			Instruction ins = it.next();
+			if(!ins.runPipelineStage()) {
+				log+="Detectado hazard de dados, portanto não será atualizado o restante do pipeline\n";
+				log += "============================================= \n"
+						+ "Fim do estágio \n"
+						+ "============================================ \n";
+
+				return;
+			}
+			ins.setStage(ins.getStage()+1);
+			if(ins.getStage() >= ins.pipeline.length) it.remove();
+			System.out.println(pipeline.isEmpty());
+		}
+		
+		if(!pipeline.isEmpty())	{
+			if(Arrays.stream(controlHazard).anyMatch(x -> x.equals(pipeline.get(pipeline.size()-1).getCommand()) )) {
+				log+="Próxima instrução é um desvio, portanto não serão adicionadas novas instruções ao pipeline\n";
+				log += "============================================= \n"
+						+ "Fim do estágio \n"
+						+ "============================================= \n";
+			}	
+		}
+		else {
+			System.out.println("Entrou");
+			log += "============================================= \n"
+					+ "Fim do estágio \n"
+					+ "============================================= \n";
+			bancoRegistradores[32]+= 4;
+			if(bancoRegistradores[32]/4 >= getAssemblyList().size())return;
+			Instruction copia = (Instruction) instructions.get(bancoRegistradores[32]/4).clone();
+			copia.setStage(0);
+			pipeline.add(copia);
+		}
 	}
 
 	public Integer getClock() {
