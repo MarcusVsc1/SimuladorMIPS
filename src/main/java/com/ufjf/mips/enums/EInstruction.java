@@ -300,7 +300,6 @@ public enum EInstruction {
 			}
 			MipsOperational.memoria[posicao / 4] 
 					 = MipsOperational.bancoRegistradores[((TypeI) ins).getRt()];
-			System.out.println("Alterado" + posicao+ " "+MipsOperational.bancoRegistradores[((TypeI) ins).getRt()]+" "+((TypeI) ins).getRt());
 			MipsOperational.log += run;
 		}
 		
@@ -331,7 +330,6 @@ public enum EInstruction {
 		@Override
 		public String createAssembly(Instruction ins) {
 			ins = (TypeI) ins;
-			System.out.println(((TypeI) ins).getRs());
 			return String.format("lw %s, %s(%s)", 
 					MipsOperational.mapa.get(((TypeI) ins).getRt()), 
 					((TypeI) ins).getImm(),
