@@ -42,7 +42,7 @@ public enum EInstruction {
 		public boolean read(Instruction ins) {
 			boolean hazard = ins.verifyDataHazard();
 			if(!hazard) return false;
-			MipsOperational.log +=String.format("Valores de %s e Ss para a instrução %s: %s %s \n", 
+			MipsOperational.log +=String.format("Valores de %s e %s para a instrução %s: %s %s \n", 
 					MipsOperational.mapa.get(((TypeR) ins).getRs()), 
 					MipsOperational.mapa.get(((TypeR) ins).getRt()),
 					ins.createAssembly(), 
@@ -100,7 +100,7 @@ public enum EInstruction {
 		public boolean read(Instruction ins) {
 			boolean hazard = ins.verifyDataHazard();
 			if(!hazard) return false;
-			MipsOperational.log +=String.format("Valores de %s e Ss para a instrução %s: %s %s \n", 
+			MipsOperational.log +=String.format("Valores de %s e %s para a instrução %s: %s %s \n", 
 					MipsOperational.mapa.get(((TypeR) ins).getRs()), 
 					MipsOperational.mapa.get(((TypeR) ins).getRt()),
 					ins.createAssembly(), 
@@ -157,7 +157,7 @@ public enum EInstruction {
 		public boolean read(Instruction ins) {
 			boolean hazard = ins.verifyDataHazard();
 			if(!hazard) return false;
-			MipsOperational.log +=String.format("Valores de %s e Ss para a instrução %s: %s %s \n", 
+			MipsOperational.log +=String.format("Valores de %s e %s para a instrução %s: %s %s \n", 
 					MipsOperational.mapa.get(((TypeR) ins).getRs()), 
 					MipsOperational.mapa.get(((TypeR) ins).getRt()),
 					ins.createAssembly(), 
@@ -213,7 +213,7 @@ public enum EInstruction {
 		public boolean read(Instruction ins) {
 			boolean hazard = ins.verifyDataHazard();
 			if(!hazard) return false;
-			MipsOperational.log +=String.format("Valores de %s e Ss para a instrução %s: %s %s \n", 
+			MipsOperational.log +=String.format("Valores de %s e %s para a instrução %s: %s %s \n", 
 					MipsOperational.mapa.get(((TypeR) ins).getRs()), 
 					MipsOperational.mapa.get(((TypeR) ins).getRt()),
 					ins.createAssembly(), 
@@ -271,7 +271,7 @@ public enum EInstruction {
 		public boolean read(Instruction ins) {
 			boolean hazard = ins.verifyDataHazard();
 			if(!hazard) return false;
-			MipsOperational.log +=String.format("Valores de %s e Ss para a instrução %s: %s %s \n", 
+			MipsOperational.log +=String.format("Valores de %s e %s para a instrução %s: %s %s \n", 
 					MipsOperational.mapa.get(((TypeR) ins).getRs()), 
 					MipsOperational.mapa.get(((TypeR) ins).getRt()),
 					ins.createAssembly(), 
@@ -607,7 +607,7 @@ public enum EInstruction {
 				run += branch != 0 ? 
 						String.format("ALU: Desvio feito. Valor de PC: %s\n. Instrução finalizada no pipeline.\n", 
 						MipsOperational.bancoRegistradores[32]) : 
-							String.format("ALU instrução %s: Desvio não realizado. Valor de PC: %s\n. Instrução finalizada no pipeline.\n", 
+							String.format("ALU instrução %s: Desvio não realizado. Valor de PC: %s.\nInstrução finalizada no pipeline.\n", 
 									ins.createAssembly(), MipsOperational.bancoRegistradores[32]);				
 			}
 			MipsOperational.log += run;	
@@ -643,7 +643,7 @@ public enum EInstruction {
 				run = "Iniciando instrução : "+ins.createAssembly()+"\n";
 				run = run + "Instrução rodada com sucesso! \n";
 			}else {
-				run += String.format("Instrução %s, Valor de PC: %s.\n Instrução finalizada no pipeline.\n", 
+				run += String.format("Instrução %s, Valor de PC: %s.\nInstrução finalizada no pipeline.\n", 
 						ins.createAssembly(),  MipsOperational.bancoRegistradores[32]);
 				MipsOperational.bancoRegistradores[32] -= 4;
 			}
@@ -674,7 +674,7 @@ public enum EInstruction {
 				run += "Iniciando instrução : "+ins.createAssembly()+"\n";
 				run += "Instrução rodada com sucesso! \n";
 			}else {
-				run += String.format("Instrução %s, Valor de PC: %s\n. Instrução finalizada no pipeline.\n", 
+				run += String.format("Instrução %s, Valor de PC: %s.\nInstrução finalizada no pipeline.\n", 
 						ins.createAssembly(),  MipsOperational.bancoRegistradores[32]);
 				MipsOperational.bancoRegistradores[32] -= 4;
 			}
