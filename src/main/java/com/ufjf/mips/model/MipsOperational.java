@@ -88,8 +88,7 @@ public class MipsOperational {
 			ins.setStage(ins.getStage()+1);
 			if(ins.getStage() >= ins.pipeline.length) it.remove();
 		}
-//		if(!pipeline.isEmpty()) System.out.println(pipeline.get(pipeline.size()-1).getStage() + " "+pipeline.get(pipeline.size()-1).getCommand()
-//				+ " "+pipeline.get(pipeline.size()-1).pipeline.length);
+
 		if((!pipeline.isEmpty()) &&	
 			(Arrays.stream(controlHazard).anyMatch(x -> x.equals(pipeline.get(pipeline.size()-1).getCommand())))
 			&& (pipeline.get(pipeline.size()-1).getStage() < pipeline.get(pipeline.size()-1).pipeline.length)

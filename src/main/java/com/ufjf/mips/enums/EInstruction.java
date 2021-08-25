@@ -42,9 +42,12 @@ public enum EInstruction {
 		public boolean read(Instruction ins) {
 			boolean hazard = ins.verifyDataHazard();
 			if(!hazard) return false;
-			MipsOperational.log +=String.format("Valores de RS e RT para a instrução %s: %s %s \n", ins.createAssembly(), 
-					((TypeR)ins).getRs(), 
-					((TypeR)ins).getRt()
+			MipsOperational.log +=String.format("Valores de %s e Ss para a instrução %s: %s %s \n", 
+					MipsOperational.mapa.get(((TypeR) ins).getRs()), 
+					MipsOperational.mapa.get(((TypeR) ins).getRt()),
+					ins.createAssembly(), 
+					MipsOperational.bancoRegistradores[((TypeR) ins).getRs()], 
+					MipsOperational.bancoRegistradores[((TypeR) ins).getRt()]
 					);
 			return true;
 		}
@@ -97,8 +100,13 @@ public enum EInstruction {
 		public boolean read(Instruction ins) {
 			boolean hazard = ins.verifyDataHazard();
 			if(!hazard) return false;
-			MipsOperational.log +=String.format("Valores de RS e RT para a instrução %s: \n", ((TypeR)ins).getRs(), 
-					((TypeR)ins).getRt(), ins.createAssembly());
+			MipsOperational.log +=String.format("Valores de %s e Ss para a instrução %s: %s %s \n", 
+					MipsOperational.mapa.get(((TypeR) ins).getRs()), 
+					MipsOperational.mapa.get(((TypeR) ins).getRt()),
+					ins.createAssembly(), 
+					MipsOperational.bancoRegistradores[((TypeR) ins).getRs()], 
+					MipsOperational.bancoRegistradores[((TypeR) ins).getRt()]
+					);
 			return true;
 		}
 		
@@ -149,8 +157,13 @@ public enum EInstruction {
 		public boolean read(Instruction ins) {
 			boolean hazard = ins.verifyDataHazard();
 			if(!hazard) return false;
-			MipsOperational.log +=String.format("Valores de RS e RT  para a instrução %s: \n", ((TypeR)ins).getRs(), 
-					((TypeR)ins).getRt(), ins.createAssembly());
+			MipsOperational.log +=String.format("Valores de %s e Ss para a instrução %s: %s %s \n", 
+					MipsOperational.mapa.get(((TypeR) ins).getRs()), 
+					MipsOperational.mapa.get(((TypeR) ins).getRt()),
+					ins.createAssembly(), 
+					MipsOperational.bancoRegistradores[((TypeR) ins).getRs()], 
+					MipsOperational.bancoRegistradores[((TypeR) ins).getRt()]
+					);
 			return true;
 		}
 		
@@ -200,8 +213,13 @@ public enum EInstruction {
 		public boolean read(Instruction ins) {
 			boolean hazard = ins.verifyDataHazard();
 			if(!hazard) return false;
-			MipsOperational.log +=String.format("Valores de RS e RT para a instrução %s: \n", ((TypeR)ins).getRs(), 
-					((TypeR)ins).getRt(), ins.createAssembly());
+			MipsOperational.log +=String.format("Valores de %s e Ss para a instrução %s: %s %s \n", 
+					MipsOperational.mapa.get(((TypeR) ins).getRs()), 
+					MipsOperational.mapa.get(((TypeR) ins).getRt()),
+					ins.createAssembly(), 
+					MipsOperational.bancoRegistradores[((TypeR) ins).getRs()], 
+					MipsOperational.bancoRegistradores[((TypeR) ins).getRt()]
+					);
 			return true;
 		}
 		
@@ -253,8 +271,13 @@ public enum EInstruction {
 		public boolean read(Instruction ins) {
 			boolean hazard = ins.verifyDataHazard();
 			if(!hazard) return false;
-			MipsOperational.log +=String.format("Valores de RS e RT para a instrução %s: \n", ((TypeR)ins).getRs(), 
-					((TypeR)ins).getRt(), ins.createAssembly());
+			MipsOperational.log +=String.format("Valores de %s e Ss para a instrução %s: %s %s \n", 
+					MipsOperational.mapa.get(((TypeR) ins).getRs()), 
+					MipsOperational.mapa.get(((TypeR) ins).getRt()),
+					ins.createAssembly(), 
+					MipsOperational.bancoRegistradores[((TypeR) ins).getRs()], 
+					MipsOperational.bancoRegistradores[((TypeR) ins).getRt()]
+					);
 			return true;
 		}
 		
@@ -293,7 +316,7 @@ public enum EInstruction {
 				run += "Instrução rodada com sucesso! \n";
 				MipsOperational.bancoRegistradores[32] += 4;
 			} else {
-					run += String.format("Instrução %s: Esta se trata de uma operação de escrita."
+					run += String.format("Instrução %s: Esta se trata de uma operação de escrita na memória."
 							+ "\nMemória na posição %s modificada. "
 							+ "\nInstrução finalizada. \n", ins.createAssembly(),
 							posicao);
@@ -307,8 +330,10 @@ public enum EInstruction {
 		public boolean read(Instruction ins) {
 			boolean hazard = ins.verifyDataHazard();
 			if(!hazard) return false;
-			MipsOperational.log +=String.format("Valores de RS e Immediate para a instrução %s: %s %s \n", ins.createAssembly(),
-					((TypeI)ins).getRs(), 
+			MipsOperational.log +=String.format("Valores de %s e Immediate para a instrução %s: %s %s \n", 
+					MipsOperational.mapa.get(((TypeI) ins).getRs()),
+					ins.createAssembly(),
+					MipsOperational.bancoRegistradores[((TypeI) ins).getRs()], 
 					((TypeI)ins).getImm());
 			return true;
 		}
@@ -346,8 +371,7 @@ public enum EInstruction {
 				run += "Instrução rodada com sucesso! \n";
 				MipsOperational.bancoRegistradores[32] += 4;				
 			} else {
-					MipsOperational.log +=String.format("Instrução %s: esta se trata de uma operação de leitura. "
-							+ "\nRegistrador %s modificado. \n"
+					MipsOperational.log +=String.format("Instrução %s: registrador %s modificado. \n"
 							+ "Instrução finalizada. \n", ins.createAssembly(),
 							MipsOperational.mapa.get(((TypeI)ins).getRt())
 							);
@@ -362,8 +386,11 @@ public enum EInstruction {
 		public boolean read(Instruction ins) {
 			boolean hazard = ins.verifyDataHazard();
 			if(!hazard) return false;
-			MipsOperational.log +=String.format("Valores de RS e Immediate para a instrução %s: \n", ((TypeI)ins).getRs(), 
-					((TypeI)ins).getImm(), ins.createAssembly());
+			MipsOperational.log +=String.format("Valores de %s e Immediate para a instrução %s: %s %s \n", 
+					MipsOperational.mapa.get(((TypeI) ins).getRs()),
+					ins.createAssembly(),
+					MipsOperational.bancoRegistradores[((TypeI) ins).getRs()], 
+					((TypeI)ins).getImm());
 			return true;
 		}
 		
@@ -381,7 +408,8 @@ public enum EInstruction {
 		@Override
 		public boolean memo(Instruction ins) {
 			Integer result = ((TypeI) ins).getImm() + MipsOperational.bancoRegistradores[((TypeI) ins).getRs()];
-			MipsOperational.log +=String.format("Instrução %s: Valor contido no endereço de memória %s\n", ins.createAssembly(),
+			MipsOperational.log +=String.format("Instrução %s: Esta se trata de uma operação de leitura na memória. \n"
+					+ "Valor contido no endereço de memória %s\n", ins.createAssembly(),
 					result,
 					MipsOperational.bancoRegistradores[result/4]);
 			return true;
@@ -422,8 +450,10 @@ public enum EInstruction {
 		public boolean read(Instruction ins) {
 			boolean hazard = ins.verifyDataHazard();
 			if(!hazard) return false;
-			MipsOperational.log +=String.format("Valores de RS e Immediate para a instrução %s: %s %s \n", ins.createAssembly(),
-					((TypeI)ins).getRs(), 
+			MipsOperational.log +=String.format("Valores de %s e Immediate para a instrução %s: %s %s \n", 
+					MipsOperational.mapa.get(((TypeI) ins).getRs()),
+					ins.createAssembly(),
+					MipsOperational.bancoRegistradores[((TypeI) ins).getRs()], 
 					((TypeI)ins).getImm());
 			return true;
 		}
@@ -475,8 +505,10 @@ public enum EInstruction {
 		public boolean read(Instruction ins) {
 			boolean hazard = ins.verifyDataHazard();
 			if(!hazard) return false;
-			MipsOperational.log +=String.format("Valores de Rt e SHAMT para a instrução %s: %s %s\n", ins.createAssembly(),
-					((TypeR)ins).getRt(), 
+			MipsOperational.log +=String.format("Valores de %s e SHAMT para a instrução %s: %s %s\n",
+					MipsOperational.mapa.get(((TypeR) ins).getRt()),
+					ins.createAssembly(),
+					MipsOperational.bancoRegistradores[((TypeR) ins).getRt()], 
 					((TypeR)ins).getShamt()
 					);
 			return true;
@@ -533,8 +565,12 @@ public enum EInstruction {
 		public boolean read(Instruction ins) {
 			boolean hazard = ins.verifyDataHazard();
 			if(!hazard) return false;
-			MipsOperational.log +=String.format("Valores de RS e RT para a instrução %s: %s %s \n", ins.createAssembly(),
-					((TypeI)ins).getRs(), ((TypeI)ins).getRt());
+			MipsOperational.log +=String.format("Valores de %s e %s para a instrução %s: %s %s \n", 
+					MipsOperational.mapa.get(((TypeI) ins).getRs()), 
+					MipsOperational.mapa.get(((TypeI) ins).getRt()), 
+					ins.createAssembly(),
+					MipsOperational.bancoRegistradores[((TypeI) ins).getRs()] != -999999 ? MipsOperational.bancoRegistradores[((TypeI) ins).getRs()] : "#LIXO", 
+					MipsOperational.bancoRegistradores[((TypeI) ins).getRt()] != -999999 ? MipsOperational.bancoRegistradores[((TypeI) ins).getRt()] : "#LIXO");
 			return true;
 		}
 		
@@ -581,7 +617,12 @@ public enum EInstruction {
 		public boolean read(Instruction ins) {
 			boolean hazard = ins.verifyDataHazard();
 			if(!hazard) return false;
-			MipsOperational.log +=String.format("Valores de RS e RT para a instrução %s: \n", ((TypeI)ins).getRs(), ((TypeI)ins).getRt());
+			MipsOperational.log +=String.format("Valores de %s e %s para a instrução %s: %s %s \n", 
+					MipsOperational.mapa.get(((TypeI) ins).getRs()), 
+					MipsOperational.mapa.get(((TypeI) ins).getRt()), 
+					ins.createAssembly(),
+					MipsOperational.bancoRegistradores[((TypeI) ins).getRs()], 
+					MipsOperational.bancoRegistradores[((TypeI) ins).getRt()]);
 			return true;
 		}
 	},
@@ -644,9 +685,10 @@ public enum EInstruction {
 		public boolean read(Instruction ins) {
 			boolean hazard = ins.verifyDataHazard();
 			if(!hazard) return false;
-			MipsOperational.log +=String.format("Valor de RS para a instrução %s: %s\n", 
+			MipsOperational.log +=String.format("Valor de %s para a instrução %s: %s\n", 
+					MipsOperational.mapa.get(((TypeR) ins).getRs()),
 					ins.createAssembly(), 
-					((TypeR)ins).getRs());
+					MipsOperational.bancoRegistradores[((TypeR) ins).getRs()]);
 			return true;
 		}
 		
@@ -720,7 +762,7 @@ public enum EInstruction {
 	}
 	
 	public void representarALU(Instruction ins, Integer valor) {
-		MipsOperational.log +=String.format("Valor calculado pela ALU para a instrução %s: %s \n", ins.createAssembly(), valor);
+		MipsOperational.log +=String.format("Valor calculado pela ALU para a instrução %s: %s \n", ins.createAssembly(), valor > -999900 ? valor : "#LIXO");
 	}
 	
 	public boolean register(Instruction ins) {

@@ -97,7 +97,6 @@ public abstract class Instruction implements Cloneable{
 		case "ALU" -> retorno =  EInstruction.valueOf(getCommand()).alu(this) ;
 		case "REGISTER" -> retorno =  EInstruction.valueOf(getCommand()).register(this);
 		case "MEMO" -> retorno =  EInstruction.valueOf(getCommand()).memo(this);
-		
 		}
 		return retorno;
 		

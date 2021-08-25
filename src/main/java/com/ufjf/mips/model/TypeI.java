@@ -67,6 +67,7 @@ public class TypeI extends Instruction{
 			if((in instanceof TypeR && (((TypeR) in).getRd() == getRs() || ((TypeR) in).getRd() == getRt()))
 					|| ((in.getCommand().equals("LW")  && (((TypeI)in).getRt() == getRs() || 
 					((TypeI)in).getRt() == getRt())))){
+						MipsOperational.log += String.format("Instrução %s: ", createAssembly());
 						return false;
 					}
 			}

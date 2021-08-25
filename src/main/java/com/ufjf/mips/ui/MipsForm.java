@@ -156,7 +156,7 @@ public class MipsForm extends javax.swing.JFrame {
 		atualizarUI();
 		JOptionPane.showMessageDialog(rootPane, "A compilação do conjunto de instruções foi finalizado. "
 				+ "Aperte reset caso queira rodar novamente. Arquivos criados na pasta output.",
-		        "Fim do programa",0);
+		        "Fim do programa", JOptionPane.INFORMATION_MESSAGE);
 		jButton1.setEnabled(false);
 		jButton2.setEnabled(false);
 		String memo = FileManager.criarStringArrayMemoria(ops.memoria);
